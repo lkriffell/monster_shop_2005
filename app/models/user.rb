@@ -3,5 +3,8 @@ class User < ApplicationRecord
   validates_presence_of :address, :city, :state, :zip, :password, :name
 
 
+
+  validates :password, confirmation: true
+
   has_secure_password
 end

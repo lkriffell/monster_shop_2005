@@ -24,7 +24,7 @@ RSpec.describe "User" do
       fill_in :zip, with: zip
       fill_in :email, with: email
       fill_in :password, with: password
-      fill_in :confirmation_password, with: password
+      fill_in :password_confirmation, with: password
 
       click_button "Register"
 
@@ -57,7 +57,7 @@ RSpec.describe "User" do
         fill_in :zip, with: zip
         fill_in :email, with: email
         fill_in :password, with: password
-        fill_in :confirmation_password, with: password
+        fill_in :password_confirmation, with: password
 
         click_button "Register"
         expect(current_path).to eq("/register")
@@ -87,7 +87,7 @@ RSpec.describe "User" do
         fill_in :zip, with: ""
         fill_in :email, with: ""
         fill_in :password, with: ""
-        fill_in :confirmation_password, with: ""
+        fill_in :password_confirmation, with: ""
 
         click_button "Register"
 
