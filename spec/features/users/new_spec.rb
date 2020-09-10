@@ -33,7 +33,9 @@ RSpec.describe "User" do
     end
 
     describe "unsuccessfully" do
-      xit "when pre-existing email is used to register" do
+      it "when pre-existing email is used to register" do
+        User.create!(username: "bob", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com")
+
         visit '/'
 
         click_link "Register"
@@ -58,6 +60,17 @@ RSpec.describe "User" do
         fill_in :confirmation_password, with: password
 
         click_button "Register"
+        expect(current_path).to eq("/register")
+
+        expect(page).to have_content("Sorry, that email is already in use.")
+
+        expect(page).to have_content(username)
+        expect(page).to have_content(address)
+        expect(page).to have_content(city)
+        expect(page).to have_content(state)
+        expect(page).to have_content(zip)
+        expect(page).not_to have_content(email)
+        expect(page).not_to have_content(password)
       end
 
       it "when field is missing" do
