@@ -3,10 +3,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create!(user_params)
-    session[:user_id] = @user.id
-    flash[:notice] = "You are now registered and logged in."
-    redirect_to '/profile'
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:notice] = "You are now registered and logged in."
+      redirect_to '/profile'
+    else
+      flash[:notice] = "You must fill out all fields to register."
+      render :new
+    end
   end
 
   def show
