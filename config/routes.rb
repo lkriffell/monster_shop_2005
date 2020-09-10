@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   get '/register', to: 'users#new'
-  post '/profile', to: 'users#create'
+  post '/register', to: 'users#create'
+  get '/profile', to: 'users#show'
 
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"

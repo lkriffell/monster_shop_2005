@@ -3,7 +3,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.create!(user_params)
+    @user = User.create!(user_params)
+    session[:user_id] = @user.id
+    flash[:notice] = "You are now registered and logged in."
+    redirect_to '/profile'
+  end
+
+  def show
+    @user = User.find(session[:user_id])
   end
 
   private

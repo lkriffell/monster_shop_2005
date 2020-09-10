@@ -29,7 +29,7 @@ RSpec.describe "User" do
       click_button "Register"
 
       expect(current_path).to eq("/profile")
-      expect(page).to have_content("Welcome, #{username}!")
+      expect(page).to have_content("You are now registered and logged in.")
     end
 
     xit "unsuccsefully" do
