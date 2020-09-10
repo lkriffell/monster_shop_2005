@@ -1,19 +1,19 @@
 <%= form_tag path, method: method do %>
 
   <label>Username:</label>
-  <%= text_field_tag :username %><br>
+  <%= text_field_tag :username, @user_params[:username] %><br>
 
   <label>Address:</label>
-  <%= text_field_tag :address %><br>
+  <%= text_field_tag :address, @user_params[:address] %><br>
 
   <label>City:</label>
-  <%= text_field_tag :city %><br>
+  <%= text_field_tag(:city, @user_params[:city]) %><br>
 
   <label>State:</label>
-  <%= text_field_tag :state %><br>
+  <%= text_field_tag :state, @user_params[:state] %><br>
 
   <label>Zip:</label>
-  <%= text_field_tag :zip %><br>
+  <%= text_field_tag :zip, @user_params[:zip] %><br>
 
   <label>Email:</label>
   <%= text_field_tag :email %><br>

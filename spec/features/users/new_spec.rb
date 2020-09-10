@@ -62,15 +62,15 @@ RSpec.describe "User" do
         click_button "Register"
         expect(current_path).to eq("/register")
 
-        expect(page).to have_content("Sorry, that email is already in use.")
+        expect(page).to have_content("Email has already been taken")
 
-        expect(page).to have_content(username)
-        expect(page).to have_content(address)
-        expect(page).to have_content(city)
-        expect(page).to have_content(state)
-        expect(page).to have_content(zip)
-        expect(page).not_to have_content(email)
-        expect(page).not_to have_content(password)
+        expect(find_field(:username).value).to eq(username)
+        expect(find_field(:address).value).to eq(address)
+        expect(find_field(:city).value).to eq(city)
+        expect(find_field(:state).value).to eq(state)
+        expect(find_field(:zip).value).to eq(zip)
+        expect(find_field(:email).value).to eq(nil)
+        expect(find_field(:password).value).to eq(nil)
       end
 
       it "when field is missing" do
@@ -92,7 +92,7 @@ RSpec.describe "User" do
         click_button "Register"
 
         expect(current_path).to eq("/register")
-        expect(page).to have_content("You must fill out all fields to register.")
+        expect(page).to have_content("Username can't be blank, Email can't be blank, Address can't be blank, City can't be blank, State can't be blank, Zip can't be blank, Password can't be blank, and Password can't be blank")
       end
     end
   end

@@ -1,18 +1,20 @@
 class UsersController < ApplicationController
   def new
+    @user_params = user_params
   end
 
   def create
     @user = User.new(user_params)
-    require "pry"; binding.pry
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You are now registered and logged in."
       redirect_to '/profile'
     else
-      flash[:notice] = "You must fill out all fields to register."
+      flash[:notice] = @user.errors.full_messages.to_sentence
+      @user_params = user_params
       render :new
     end
+
   end
 
   def show
