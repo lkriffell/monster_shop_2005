@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def new
+    @user_params = user_params
   end
 
   def create
@@ -9,9 +10,11 @@ class UsersController < ApplicationController
       flash[:notice] = "You are now registered and logged in."
       redirect_to '/profile'
     else
-      flash[:notice] = "You must fill out all fields to register."
+      flash[:notice] = @user.errors.full_messages.to_sentence
+      @user_params = user_params
       render :new
     end
+
   end
 
   def show
@@ -20,6 +23,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.permit(:username, :address, :city, :state, :zip, :email, :password)
+      params.permit(:name, :address, :city, :state, :zip, :email, :password)
     end
 end
