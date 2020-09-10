@@ -1,0 +1,29 @@
+<%= form_tag path, method: method do %>
+
+  <label>Username:</label>
+  <%= text_field_tag :username %><br>
+
+  <label>Address:</label>
+  <%= text_field_tag :address %><br>
+
+  <label>City:</label>
+  <%= text_field_tag :city %><br>
+
+  <label>State:</label>
+  <%= text_field_tag :state %><br>
+
+  <label>Zip:</label>
+  <%= text_field_tag :zip %><br>
+
+  <label>Email:</label>
+  <%= text_field_tag :email %><br>
+
+  <label>Password:</label>
+  <%= text_field_tag :password %><br>
+
+  <label>Confirm Password:</label>
+  <%= text_field_tag :confirmation_password %><br>
+
+  <%= submit_tag button_text %>
+
+<% end %>
