@@ -298,7 +298,7 @@ Our application wouldn't be much use if users could not log in to use it.
 
 
 ```
-[ ] done
+[ X ] done
 
 User Story 13, User can Login
 
@@ -307,13 +307,13 @@ When I visit the login path 
 I see a field to enter my email address and password √
 When I submit valid information √
 If I am a regular user, I am redirected to my profile page √
-If I am a merchant user, I am redirected to my merchant dashboard page
+If I am a merchant user, I am redirected to my merchant dashboard page √
 If I am an admin user, I am redirected to my admin dashboard page √
 And I see a flash message that I am logged in √
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 14, User cannot log in with bad credentials
 
@@ -326,14 +326,14 @@ I am NOT told whether it was my email or password that was incorrect √
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 15, Users who are logged in already are redirected
 
 As a registered user, merchant, or admin
 When I visit the login path
 If I am a regular user, I am redirected to my profile page √
-If I am a merchant user, I am redirected to my merchant dashboard page
+If I am a merchant user, I am redirected to my merchant dashboard page √
 If I am an admin user, I am redirected to my admin dashboard page √
 And I see a flash message that tells me I am already logged in √
 ```
