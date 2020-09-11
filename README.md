@@ -339,15 +339,15 @@ And I see a flash message that tells me I am already logged in √
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 16, User can log out
 
 As a registered user, merchant, or admin
 When I visit the logout path
-I am redirected to the welcome / home page of the site
-And I see a flash message that indicates I am logged out
-Any items I had in my shopping cart are deleted
+I am redirected to the welcome / home page of the site √
+And I see a flash message that indicates I am logged out √
+Any items I had in my shopping cart are deleted √
 ```
 
 ---
