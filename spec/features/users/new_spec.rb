@@ -92,7 +92,7 @@ RSpec.describe "User" do
         click_button "Register"
 
         expect(current_path).to eq("/register")
-        expect(page).to have_content("Email can't be blank, Address can't be blank, City can't be blank, State can't be blank, Zip can't be blank, Password can't be blank, Password can't be blank, Password can't be blank, and Name can't be blank")
+        expect(page).to have_content("Email can't be blank, Password confirmation doesn't match Password, Password can't be blank, Address can't be blank, City can't be blank, State can't be blank, Zip can't be blank, and Name can't be blank")
       end
       it "when passwords dont match" do
         visit '/'
@@ -121,7 +121,7 @@ RSpec.describe "User" do
         click_button "Register"
 
         expect(current_path).to eq("/register")
-        expect(page).to have_content("Passwords must match")
+        expect(page).to have_content("Password confirmation doesn't match Password")
       end
     end
   end
