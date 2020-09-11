@@ -14,4 +14,33 @@ RSpec.describe User do
 
       it {should validate_confirmation_of :password}
   end
+
+
+  describe "roles" do
+    it "can be created as a merchant" do
+      merchant = User.create(name: "penelope",
+                         password: "boom",
+                         role: 2)
+
+      expect(merchant.role).to eq("merchant")
+      expect(merchant.merchant?).to be_truthy
+    end
+    it "can be created as an admin" do
+      admin = User.create(name: "penelope",
+                         password: "boom",
+                         role: 1)
+
+      expect(admin.role).to eq("admin")
+      expect(admin.admin?).to be_truthy
+    end
+
+    it "can be created as a default user" do
+      user = User.create(name: "sammy",
+                         password: "pass",
+                         role: 0)
+
+      expect(user.role).to eq("default")
+      expect(user.default?).to be_truthy
+    end
+  end
 end
