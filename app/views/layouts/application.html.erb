@@ -14,12 +14,8 @@
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" %>
       <%= link_to "Register", "/register" %>
-
-      <% if session[:user_id] == nil %>
-        <%= link_to "Log in", "/login" %>
-      <% else %>
-        <%= link_to "Log out", "/logout" %>
-      <% end %>
+      <%= link_to "Log in", "/login" %>
+      <%= link_to "Log out", "/logout" %>
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">

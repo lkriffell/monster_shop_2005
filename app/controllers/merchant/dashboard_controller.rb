@@ -1,4 +1,4 @@
-class Merchant::DashboardController < Admin::BaseController
+class Merchant::DashboardController < Merchant::BaseController
   before_action :require_merchant
 
   def index
