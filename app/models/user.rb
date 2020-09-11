@@ -3,11 +3,8 @@ class User < ApplicationRecord
   validates_presence_of :address, :city, :state, :zip, :password, :name
 
 
-
-  validates :password, confirmation: true
-  validates :password, presence: true
-  validates :password_confirmation, confirmation: true
-  validates :password_confirmation, presence: true
-
   has_secure_password
+
+  # enum role: %w(default admin merchant)
+  enum role: ['default', 'admin', 'merchant']
 end
