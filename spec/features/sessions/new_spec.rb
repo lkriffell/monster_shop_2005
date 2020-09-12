@@ -26,8 +26,6 @@ describe "Logging In as" do
 
     click_button "Log In"
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
-
     expect(current_path).to eq("/merchant/dashboard")
 
     expect(page).to have_content("Hello, #{merchant.name}. You are now logged in.")
@@ -42,8 +40,6 @@ describe "Logging In as" do
     fill_in :password, with: admin.password
 
     click_button "Log In"
-
-    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     expect(current_path).to eq("/admin/dashboard")
 
@@ -124,5 +120,34 @@ describe "Logging In as" do
 
     expect(current_path).to eq('/admin/dashboard')
     expect(page).to have_content("You are already logged in.")
+  end
+
+  it "can log out" do
+    admin = User.create!(name: "barb", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "somebody@gmail.com", role: 2)
+    bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+    tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+
+    visit "/login"
+
+    fill_in :email, with: admin.email
+    fill_in :password, with: admin.password
+
+    click_button "Log In"
+
+    visit "/items/#{tire.id}"
+
+    click_button "Add To Cart"
+
+    expect(page).to have_content("Cart: 1")
+
+    visit "/logout"
+
+    expect(current_path).to eq("/")
+    expect(page).to have_content("You are now logged out.")
+    expect(page).to have_content("Cart: 0")
+
+    visit "/login"
+
+    expect(current_path).to eq("/login")
   end
 end
