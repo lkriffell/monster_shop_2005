@@ -4,19 +4,24 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email])
-    session[:user_id] = user.id
-    flash[:success] = "Hello, #{user.name}. You are now logged in."
-    if user.merchant?
-      redirect_to '/merchant/dashboard'
-    elsif user.admin?
-      redirect_to '/admin/dashboard'
+    if user.authenticate(session_params[:password])
+      session[:user_id] = user.id
+      flash[:success] = "Hello, #{user.name}. You are now logged in."
+      if user.merchant?
+        redirect_to '/merchant/dashboard'
+      elsif user.admin?
+        redirect_to '/admin/dashboard'
+      else
+        redirect_to '/profile'
+      end
     else
-      redirect_to '/profile'
+      flash[:error] = "Sorry, your credentials are incorrect."
+      render :new
     end
   end
 
   private
   def session_params
-    params.permit(:email)
+    params.permit(:email, :password)
   end
 end

@@ -49,4 +49,18 @@ describe "Logging In as" do
 
     expect(page).to have_content("Hello, #{admin.name}. You are now logged in.")
   end
+
+  it 'cannot login with invalid info' do
+    admin = User.create!(name: "barb", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "somebody@gmail.com", role: 2)
+
+    visit "/login"
+
+    fill_in :email, with: admin.email
+    fill_in :password, with: "incorrect password"
+
+    click_button "Log In"
+
+    expect(current_path).to eq('/login')
+    expect(page).to have_content("Sorry, your credentials are incorrect.")
+  end
 end
