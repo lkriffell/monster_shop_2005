@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
     flash[:success] = "Hello, #{user.name}. You are now logged in."
     if user.merchant?
       redirect_to '/merchant/dashboard'
+    elsif user.admin?
+      redirect_to '/admin/dashboard'
     else
       redirect_to '/profile'
     end
