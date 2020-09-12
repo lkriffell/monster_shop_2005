@@ -9,11 +9,44 @@
   </head>
 
   <body>
+    <% if session[:user_id] != nil %>
+      <% user = User.find(session[:user_id]) %>
+    <% end %>
     <nav class = "topnav">
-      <%= link_to "All Merchants", "/merchants"%>
-      <%= link_to "All Items", "/items"%>
-      <%= link_to "Cart: #{cart.total_items}", "/cart" %>
-      <%= link_to "Register", "/register" %>
+      <% if user == nil %>
+        <%= link_to "Home", "/" %>
+        <%= link_to "All Merchants", "/merchants"%>
+        <%= link_to "All Items", "/items"%>
+        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+        <%= link_to "Register", "/register" %>
+        <%= link_to "Log in", "/login" %>
+      <% elsif user.role == "default" %>
+        <%= link_to "Home", "/" %>
+        <%= link_to "All Merchants", "/merchants"%>
+        <%= link_to "All Items", "/items"%>
+        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+        <%= link_to "Log out", "/logout" %>
+        <%= link_to "Profile", "/profile" %>
+        <%= "Logged in as #{user.name}" %>
+      <% elsif user.role == "admin" %>
+        <%= link_to "Home", "/" %>
+        <%= link_to "All Merchants", "/merchants"%>
+        <%= link_to "All Items", "/items"%>
+        <%= link_to "Log out", "/logout" %>
+        <%= link_to "Profile", "/profile" %>
+        <%= link_to "Dashboard", "/admin/dashboard" %>
+        <%= link_to "All Users", "/admin/users" %>
+        <%= "Logged in as #{user.name}" %>
+      <% elsif user.role == "merchant" %>
+        <%= link_to "Home", "/" %>
+        <%= link_to "All Merchants", "/merchants"%>
+        <%= link_to "All Items", "/items"%>
+        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+        <%= link_to "Log out", "/logout" %>
+        <%= link_to "Profile", "/profile" %>
+        <%= link_to "Dashboard", "/merchant/dashboard" %>
+        <%= "Logged in as #{user.name}" %>
+      <% end %>
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">

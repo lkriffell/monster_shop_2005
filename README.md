@@ -128,7 +128,7 @@ You will need to set up some basic routing and empty controller actions and empt
 
 
 ```
-[ ] done
+[ X ] done
 
 User Story 2, Visitor Navigation
 
@@ -146,7 +146,7 @@ Next to the shopping cart link I see a count of the items in my cart
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 3, User Navigation
 
@@ -163,7 +163,7 @@ I also see text that says "Logged in as Mike Dao" (or whatever my name is)
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 4, Merchant Navigation
 
@@ -174,7 +174,7 @@ Plus the following links:
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 5, Admin Navigation
 
@@ -189,7 +189,7 @@ Minus the following links/info
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 6, Visitor Navigation Restrictions
 
@@ -201,7 +201,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 7, User Navigation Restrictions
 
@@ -212,7 +212,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 8, Merchant Navigation Restrictions
 
@@ -222,7 +222,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 9, Admin Navigation Restrictions
 
