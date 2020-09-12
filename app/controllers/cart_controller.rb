@@ -7,7 +7,7 @@ class CartController < ApplicationController
   end
 
   def show
-    if session[:user_id] && User.find(session[:user_id]).role == "admin"
+    if current_admin?
       render file: "/public/404"
     else
       @items = cart.items

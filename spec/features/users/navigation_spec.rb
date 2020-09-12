@@ -56,6 +56,7 @@ RSpec.describe "navigation" do
         expect(page).to have_link('All Items')
         expect(page).to have_link('Cart: 0')
         expect(page).to have_link('Log out')
+        expect(page).not_to have_link('Log in')
         expect(page).to have_link('Profile')
         expect(page).to have_content("Logged in as #{user.name}")
 
@@ -74,18 +75,18 @@ RSpec.describe "navigation" do
         expect(current_path).to eq('/cart')
         click_link 'Home'
 
-        click_link 'Log out'
-        expect(current_path).to eq('/')
-        click_link 'Home'
-
         click_link 'Profile'
         expect(current_path).to eq('/profile')
+        click_link 'Home'
+
+        click_link 'Log out'
+        expect(current_path).to eq('/')
         click_link 'Home'
     end
     it 'an admin' do
       visit '/'
 
-      user = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1)
+      user = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 2)
       click_link "Log in"
 
       email = "someone@gmail.com"
@@ -101,6 +102,8 @@ RSpec.describe "navigation" do
         expect(page).to have_link('All Merchants')
         expect(page).to have_link('All Items')
         expect(page).to have_link('Log out')
+        expect(page).not_to have_link('Log in')
+        expect(page).not_to have_link('Cart: 0')
         expect(page).to have_link('Profile')
         expect(page).to have_link('Dashboard')
         expect(page).to have_link('All Users')
@@ -117,10 +120,6 @@ RSpec.describe "navigation" do
         expect(current_path).to eq('/items')
         click_link 'Home'
 
-        click_link 'Log out'
-        expect(current_path).to eq('/')
-        click_link 'Home'
-
         click_link 'Profile'
         expect(current_path).to eq('/profile')
         click_link 'Home'
@@ -132,11 +131,15 @@ RSpec.describe "navigation" do
         click_link 'All Users'
         expect(current_path).to eq('/admin/users')
         click_link 'Home'
+
+        click_link 'Log out'
+        expect(current_path).to eq('/')
+        click_link 'Home'
     end
     it 'a merchant' do
       visit '/'
 
-      user = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 2)
+      user = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1)
 
       click_link "Log in"
 
@@ -155,6 +158,7 @@ RSpec.describe "navigation" do
         expect(page).to have_link('All Items')
         expect(page).to have_link('Cart: 0')
         expect(page).to have_link('Log out')
+        expect(page).not_to have_link('Log in')
         expect(page).to have_link('Profile')
         expect(page).to have_link('Dashboard')
         expect(page).to have_content("Logged in as #{user.name}")
@@ -174,16 +178,16 @@ RSpec.describe "navigation" do
         expect(current_path).to eq('/cart')
         click_link 'Home'
 
-        click_link 'Log out'
-        expect(current_path).to eq('/')
-        click_link 'Home'
-
         click_link 'Profile'
         expect(current_path).to eq('/profile')
         click_link 'Home'
 
         click_link 'Dashboard'
         expect(current_path).to eq('/merchant/dashboard')
+        click_link 'Home'
+
+        click_link 'Log out'
+        expect(current_path).to eq('/')
         click_link 'Home'
     end
   end
@@ -220,7 +224,7 @@ RSpec.describe "navigation" do
     end
 
     it "admin from accessing merchant and cart" do
-      User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1)
+      User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 2)
       visit '/'
 
       click_link "Log in"
@@ -235,7 +239,7 @@ RSpec.describe "navigation" do
     end
 
     it "merchant from accessing admin" do
-      User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 2)
+      User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1)
       visit '/'
 
       click_link "Log in"

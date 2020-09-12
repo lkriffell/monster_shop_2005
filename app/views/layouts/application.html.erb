@@ -9,44 +9,26 @@
   </head>
 
   <body>
-    <% if session[:user_id] != nil %>
-      <% user = User.find(session[:user_id]) %>
-    <% end %>
+
     <nav class = "topnav">
-      <% if user == nil %>
-        <%= link_to "Home", "/" %>
-        <%= link_to "All Merchants", "/merchants"%>
-        <%= link_to "All Items", "/items"%>
-        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+      <%= link_to "Home", "/" %>
+      <%= link_to "All Merchants", "/merchants"%>
+      <%= link_to "All Items", "/items"%>
+      <%= link_to "Cart: #{cart.total_items}", "/cart" unless current_admin? %>
+
+      <% if current_user == nil %>
         <%= link_to "Register", "/register" %>
         <%= link_to "Log in", "/login" %>
-      <% elsif user.role == "default" %>
-        <%= link_to "Home", "/" %>
-        <%= link_to "All Merchants", "/merchants"%>
-        <%= link_to "All Items", "/items"%>
-        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
-        <%= link_to "Log out", "/logout" %>
-        <%= link_to "Profile", "/profile" %>
-        <h4><%= "Logged in as #{user.name}" %></h4>
-      <% elsif user.role == "admin" %>
-        <%= link_to "Home", "/" %>
-        <%= link_to "All Merchants", "/merchants"%>
-        <%= link_to "All Items", "/items"%>
-        <%= link_to "Log out", "/logout" %>
-        <%= link_to "Profile", "/profile" %>
-        <%= link_to "Dashboard", "/admin/dashboard" %>
+      <% elsif current_user.admin? %>
         <%= link_to "All Users", "/admin/users" %>
-        <h4><%= "Logged in as #{user.name}" %></h4>
-      <% elsif user.role == "merchant" %>
-        <%= link_to "Home", "/" %>
-        <%= link_to "All Merchants", "/merchants"%>
-        <%= link_to "All Items", "/items"%>
-        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
-        <%= link_to "Log out", "/logout" %>
-        <%= link_to "Profile", "/profile" %>
+        <%= link_to "Dashboard", "/admin/dashboard" %>
+      <% elsif current_user.merchant? %>
         <%= link_to "Dashboard", "/merchant/dashboard" %>
-        <h4><%= "Logged in as #{user.name}" %></h4>
       <% end %>
+
+      <%= link_to "Profile", "/profile" if current_user %>
+      <%= link_to "Log out", "/logout" if current_user %>
+      <h4><%= "Logged in as #{current_user.name}" unless current_user.nil? %></h4>
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">
