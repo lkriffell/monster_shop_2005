@@ -277,7 +277,7 @@ And I see a flash message indicating that I am missing required fields
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 12, Registration Email must be unique
 
@@ -298,7 +298,7 @@ Our application wouldn't be much use if users could not log in to use it.
 
 
 ```
-[ ] done
+[ X ] done
 
 User Story 13, User can Login
 
@@ -313,7 +313,7 @@ And I see a flash message that I am logged in
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 14, User cannot log in with bad credentials
 
@@ -326,7 +326,7 @@ I am NOT told whether it was my email or password that was incorrect
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 15, Users who are logged in already are redirected
 
@@ -339,7 +339,7 @@ And I see a flash message that tells me I am already logged in
 ```
 
 ```
-[ ] done
+[ X ] done
 
 User Story 16, User can log out
 
