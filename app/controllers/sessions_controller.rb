@@ -1,10 +1,14 @@
 class SessionsController < ApplicationController
   def new
+    if current_user
+      flash[:success] = "You are already logged in."
+      redirect_user(current_user)
+    end
   end
 
   def create
     user = User.find_by(email: session_params[:email])
-    if user.authenticate(session_params[:password])
+    if user && user.authenticate(session_params[:password])
       session[:user_id] = user.id
       flash[:success] = "Hello, #{user.name}. You are now logged in."
       redirect_user(user)
