@@ -25,8 +25,15 @@ class CartController < ApplicationController
   end
 
   def add_more_item
-    session[:cart][params[:item_id]] += 1
-    redirect_to '/cart'
+    item = Item.find(params[:item_id])
+
+      if item.inventory_has_reached_limit?(cart, item)
+        flash[:error] = "You've reached the end of this merchant's inventory"
+        redirect_to '/cart'
+      else
+        cart.add_item(item.id.to_s)
+        redirect_to '/cart'
+      end
   end
 
 end

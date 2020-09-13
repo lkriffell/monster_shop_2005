@@ -40,30 +40,24 @@ RSpec.describe 'Cart show' do
         expect(page).to have_css("#cart-item-#{@tire.id}")
         expect(page).to have_css("#cart-item-#{@pencil.id}")
         expect(page).to have_css("#cart-item-#{@paper.id}")
-
-        expect(page).to have_content("Total: $222.00")
+        expect(page).to have_content("Total: $122.00")
+        #think about adding cart number to this test
       end
 
       it "can NOT add more items then there are inventory" do
         visit "/cart"
 
-        @items_in_cart.each do |item|
-          within "#cart-item-#{item.id}" do
-            expect(page).to have_link("Add More")
-          end
-        end
-      end
-
-      it 'I can add individual items from my cart' do
-        visit "/cart"
-
         within "#cart-item-#{@tire.id}" do
-          click_on "Add More"
-          click_on "Add More"
-          click_on "Add More"
+          click_on "Add More" #2
+          click_on "Add More" #3
+          click_on "Add More" #4
         end
-        expect(current_path).to eq("/cart")
-        expect(page).to have_content("No more in stock")
+        expect(page).to have_content("You've reached the end of this merchant's inventory")
+
+        # within "#cart-item-#{@tire.id}" do
+        #   expect(current_path).to eq("/cart")
+        # end
+
       end
     end
   end
