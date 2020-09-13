@@ -24,5 +24,9 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  def add_more_item
+    session[:cart][params[:item_id]] += 1
+    redirect_to '/cart'
+  end
 
 end
