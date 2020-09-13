@@ -7,8 +7,7 @@
   <% binding.pry  %>
     <li><%= link_to "#{order.id}", "/orders/#{order.id}"%></li>
     <li><%= order.created_at %></li>
-    <% order.item_orders.sum(:) %>
-    <li><%= order.quanity %></li>
-    <li><%= order.price %></li>
+    <li><%= item_orders.quanity %></li>
+    <li><%= item_orders.price %></li>
   <% end %>
 </ul>
