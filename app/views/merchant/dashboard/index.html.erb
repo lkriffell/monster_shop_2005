@@ -1,13 +1,14 @@
+<% if @merchant %>
 <h1><%= @merchant.name %></h1>
 
-<h3><%= @merchant.address %><%= @merchant.city %><%= @merchant.state %><%= @merchant.zip %></h3>
+<h3><%= @merchant.address %> <%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h3>
 
 <ul>
   <% @merchant.orders.each do |order| %>
-  <% binding.pry  %>
-    <li><%= link_to "#{order.id}", "/orders/#{order.id}"%></li>
-    <li><%= order.created_at %></li>
-    <li><%= item_orders.quanity %></li>
-    <li><%= item_orders.price %></li>
+    <li>Order: <%= link_to order.id, "/orders/#{order.id}"%></li>
+    <li>Created At: <%= order.created_at %></li>
+    <li>Quantity: <%= order.total_quantity %></li>
+    <li>Subtotal: <%= order.grandtotal %></li>
   <% end %>
 </ul>
+<% end %>
