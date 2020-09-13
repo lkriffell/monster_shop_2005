@@ -1,1 +1,14 @@
-<h1>Merchant Dashboard</h1>
+<h1><%= @merchant.name %></h1>
+
+<h3><%= @merchant.address %><%= @merchant.city %><%= @merchant.state %><%= @merchant.zip %></h3>
+
+<ul>
+  <% @merchant.orders.each do |order| %>
+  <% binding.pry  %>
+    <li><%= link_to "#{order.id}", "/orders/#{order.id}"%></li>
+    <li><%= order.created_at %></li>
+    <% order.item_orders.sum(:) %>
+    <li><%= order.quanity %></li>
+    <li><%= order.price %></li>
+  <% end %>
+</ul>
