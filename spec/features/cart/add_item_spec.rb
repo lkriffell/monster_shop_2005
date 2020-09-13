@@ -40,7 +40,7 @@ RSpec.describe 'Cart show' do
         expect(page).to have_css("#cart-item-#{@tire.id}")
         expect(page).to have_css("#cart-item-#{@pencil.id}")
         expect(page).to have_css("#cart-item-#{@paper.id}")
-        expect(page).to have_content("Total: $122.00")
+        expect(page).to have_content("Total: $222.00")
         #think about adding cart number to this test
       end
 
