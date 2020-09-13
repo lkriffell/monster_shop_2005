@@ -9,7 +9,7 @@ describe "Logging In as" do
     fill_in :email, with: user.email
     fill_in :password, with: user.password
 
-    click_button "Log In"
+    click_button "Log in"
 
     expect(current_path).to eq("/profile")
 
@@ -24,7 +24,7 @@ describe "Logging In as" do
     fill_in :email, with: merchant.email
     fill_in :password, with: merchant.password
 
-    click_button "Log In"
+    click_button "Log in"
 
     expect(current_path).to eq("/merchant/dashboard")
 
@@ -39,7 +39,7 @@ describe "Logging In as" do
     fill_in :email, with: admin.email
     fill_in :password, with: admin.password
 
-    click_button "Log In"
+    click_button "Log in"
 
     expect(current_path).to eq("/admin/dashboard")
 
@@ -54,7 +54,7 @@ describe "Logging In as" do
     fill_in :email, with: admin.email
     fill_in :password, with: "incorrect password"
 
-    click_button "Log In"
+    click_button "Log in"
 
     expect(current_path).to eq('/login')
     expect(page).to have_content("Sorry, your credentials are incorrect.")
@@ -68,7 +68,7 @@ describe "Logging In as" do
     fill_in :email, with: "wrong email"
     fill_in :password, with: admin.password
 
-    click_button "Log In"
+    click_button "Log in"
 
     expect(current_path).to eq('/login')
     expect(page).to have_content("Sorry, your credentials are incorrect.")
@@ -82,7 +82,7 @@ describe "Logging In as" do
     fill_in :email, with: user.email
     fill_in :password, with: user.password
 
-    click_button "Log In"
+    click_button "Log in"
 
     visit "/login"
 
@@ -98,7 +98,7 @@ describe "Logging In as" do
     fill_in :email, with: merchant.email
     fill_in :password, with: merchant.password
 
-    click_button "Log In"
+    click_button "Log in"
 
     visit "/login"
 
@@ -114,7 +114,7 @@ describe "Logging In as" do
     fill_in :email, with: admin.email
     fill_in :password, with: admin.password
 
-    click_button "Log In"
+    click_button "Log in"
 
     visit "/login"
 
@@ -123,16 +123,16 @@ describe "Logging In as" do
   end
 
   it "can log out" do
-    admin = User.create!(name: "barb", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "somebody@gmail.com", role: 2)
+    user = User.create!(name: "barb", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "somebody@gmail.com", role: 0)
     bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
     tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
 
     visit "/login"
 
-    fill_in :email, with: admin.email
-    fill_in :password, with: admin.password
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
 
-    click_button "Log In"
+    click_button "Log in"
 
     visit "/items/#{tire.id}"
 

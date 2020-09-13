@@ -11,12 +11,13 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#destroy'
 
-  namespace :merchant do
-    get '/dashboard', to: 'dashboard#index'
+  namespace :admin do
+    get '/dashboard', to: "dashboard#index"
+    get '/users', to: "dashboard#show_users"
   end
 
-  namespace :admin do
-    get '/dashboard', to: 'dashboard#index'
+  namespace :merchant do
+    get '/dashboard', to: "dashboard#index"
   end
 
   get "/merchants", to: "merchants#index"
