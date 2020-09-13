@@ -40,6 +40,8 @@ RSpec.describe 'Cart show' do
         expect(page).to have_css("#cart-item-#{@tire.id}")
         expect(page).to have_css("#cart-item-#{@pencil.id}")
         expect(page).to have_css("#cart-item-#{@paper.id}")
+
+        expect(page).to have_content("Total: $222.00")
       end
     end
   end
