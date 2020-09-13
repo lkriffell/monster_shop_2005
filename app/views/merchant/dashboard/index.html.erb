@@ -4,11 +4,13 @@
 <h3><%= @merchant.address %> <%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h3>
 
 <ul>
+  <div id="order_info">
   <% @merchant.orders.each do |order| %>
     <li>Order: <%= link_to order.id, "/orders/#{order.id}"%></li>
-    <li>Created At: <%= order.created_at %></li>
     <li>Quantity: <%= order.total_quantity %></li>
     <li>Subtotal: <%= order.grandtotal %></li>
+    <li>Order Date: <%= order.created_at.to_s[0..9] %></li><br>
+  </div>
   <% end %>
 </ul>
 <% end %>
