@@ -19,11 +19,10 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_link(@tire.merchant.name)
       expect(page).to have_link(@pull_toy.name)
       expect(page).to have_link(@pull_toy.merchant.name)
-      expect(page).to have_link(@dog_bone.name)
-      expect(page).to have_link(@dog_bone.merchant.name)
+      expect(page).to_not have_link(@dog_bone.name)
     end
 
-    it "I can see a list of all of the items "do
+    it "I can see a list of all active items and hide inactive items" do
 
       visit '/items'
 
@@ -31,7 +30,6 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_link(@tire.name)
         expect(page).to have_content(@tire.description)
         expect(page).to have_content("Price: $#{@tire.price}")
-        expect(page).to have_content("Active")
         expect(page).to have_content("Inventory: #{@tire.inventory}")
         expect(page).to have_link(@meg.name)
         expect(page).to have_css("img[src*='#{@tire.image}']")
@@ -41,21 +39,22 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_link(@pull_toy.name)
         expect(page).to have_content(@pull_toy.description)
         expect(page).to have_content("Price: $#{@pull_toy.price}")
-        expect(page).to have_content("Active")
         expect(page).to have_content("Inventory: #{@pull_toy.inventory}")
         expect(page).to have_link(@brian.name)
         expect(page).to have_css("img[src*='#{@pull_toy.image}']")
       end
 
-      within "#item-#{@dog_bone.id}" do
-        expect(page).to have_link(@dog_bone.name)
-        expect(page).to have_content(@dog_bone.description)
-        expect(page).to have_content("Price: $#{@dog_bone.price}")
-        expect(page).to have_content("Inactive")
-        expect(page).to have_content("Inventory: #{@dog_bone.inventory}")
-        expect(page).to have_link(@brian.name)
-        expect(page).to have_css("img[src*='#{@dog_bone.image}']")
+      expect(page).to_not have_css("#item-#{@dog_bone.id}")
+    end
+
+    it "can click an image that links to item's show page" do
+      visit '/items'
+
+      within "#item-#{@tire.id}" do
+        click_link("#{@tire.name}")
       end
+
+      expect(current_path).to eq("/items/#{@tire.id}")
     end
   end
 end
