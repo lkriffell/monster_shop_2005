@@ -1,7 +1,10 @@
 class OrdersController <ApplicationController
 
-  def new
+  def index
 
+  end
+
+  def new
   end
 
   def show
