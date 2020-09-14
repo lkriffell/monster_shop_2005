@@ -11,15 +11,10 @@
   <body>
 
     <nav class = "topnav">
-      <% if current_user == nil %>
-        <%= render partial: './users/visitor_nav' %>
-      <% elsif current_user.role == "regular" %>
-        <%= render partial: './users/user_nav' %>
-      <% elsif current_user.admin? %>
-        <%= render partial: './users/admin_nav' %>
-      <% elsif current_user.merchant? %>
-        <%= render partial: './users/merchant_nav' %>
-      <% end %>
+      <%= render partial: './users/visitor_nav' %>
+      <%= render partial: './users/user_nav' %>
+      <%= render partial: './users/admin_nav' %>
+      <%= render partial: './users/merchant_nav' %>
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">
