@@ -28,11 +28,11 @@ RSpec.describe "merchant dashboard" do
       visit 'merchant/dashboard'
 
       expect(page).to have_link(order1.id)
-      expect(page).to have_content(order1.created_at)
+      expect(page).to have_content(order1.created_at.to_s[0..9])
       expect(page).to have_content(item_order1.quantity)
       expect(page).to have_content(item_order1.price)
       expect(page).to have_link(order2.id)
-      expect(page).to have_content(order2.created_at)
+      expect(page).to have_content(order2.created_at.to_s[0..9])
       expect(page).to have_content(item_order2.quantity)
       expect(page).to have_content(item_order2.price)
 
