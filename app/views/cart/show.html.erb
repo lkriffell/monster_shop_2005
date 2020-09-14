@@ -32,7 +32,10 @@
         <center>
           <p><%=quantity%></p>
           <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
-          <p><%= link_to "Add More", "/cart/#{item.id}", method: :patch %></p>
+          <br>
+          <p><%= button_to "+", "/cart/#{item.id}?add=true", method: :patch %></p>
+          <br>
+          <p><%= button_to "-", "/cart/#{item.id}?add=false", method: :patch %></p>
         </center>
         </td>
       <td>
