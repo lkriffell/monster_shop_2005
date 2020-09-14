@@ -31,7 +31,11 @@ class Cart
       Item.find(item_id).price * quantity
     end
   end
-  
+
+  def remove_item(item)
+    @contents[item] -= 1
+  end
+
 
 
 end
