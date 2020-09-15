@@ -15,6 +15,10 @@ RSpec.describe User do
       it {should validate_confirmation_of :password}
   end
 
+  describe "relationships" do
+    it { should have_many :orders }
+  end
+
   describe 'roles' do
     it 'can be created as a regular user' do
       bike_shop = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
