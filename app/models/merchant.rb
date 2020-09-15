@@ -11,6 +11,8 @@ class Merchant <ApplicationRecord
                         :zip
 
 
+  enum role: %w(disabled enabled)
+
   def no_orders?
     item_orders.empty?
   end
