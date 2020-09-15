@@ -9,8 +9,7 @@ FactoryBot.define do
     password { "password" }
 
     factory :merchant_user do
-      merchant_id { Merchant.all.sample.id }
-      # association :merchant
+      # merchant
       role { 1 }
     end
 
