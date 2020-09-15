@@ -9,7 +9,7 @@ FactoryBot.define do
     password { "password" }
 
     factory :merchant_user do
-      association :merchant
+      # association :merchant
       role { 1 }
     end
 
