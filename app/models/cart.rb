@@ -32,4 +32,10 @@ class Cart
     end
   end
 
+  def remove_item(item)
+    @contents[item] -= 1
+  end
+
+
+
 end

@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   patch "/reviews/:id", to: "reviews#update"
   delete "/reviews/:id", to: "reviews#destroy"
 
+  patch "cart/:item_id", to: "cart#update"
+  # patch "/:item_id", action: :update, controller: "items"
+  #above route is a  name space, namespace: cart do
   post "/cart/:item_id", to: "cart#add_item"
   get "/cart", to: "cart#show"
   delete "/cart", to: "cart#empty"

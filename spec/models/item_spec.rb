@@ -89,4 +89,26 @@ describe Item, type: :model do
       expect(@chain.no_orders?).to eq(false)
     end
   end
+
+  it '#inventory_has_reached_limit?(cart, item)' do
+    @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+
+    @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 3)
+
+      @cart_1 = Cart.new({
+        @tire.id.to_s => 1
+        })
+    expect(@tire.inventory_has_reached_limit?(@cart_1)).to eq(false)
+
+      @cart_2 = Cart.new({
+        @tire.id.to_s => 2
+        })
+    expect(@tire.inventory_has_reached_limit?(@cart_2)).to eq(false)
+
+      @cart_3 = Cart.new({
+        @tire.id.to_s => 3
+        })
+    expect(@tire.inventory_has_reached_limit?(@cart_3)).to eq(true)
+
+  end
 end
