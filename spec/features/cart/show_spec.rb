@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Cart show' do
+RSpec.describe 'Cart show page' do
   describe 'When I have added items to my cart' do
     describe 'and visit my cart path' do
       before(:each) do
@@ -55,8 +55,31 @@ RSpec.describe 'Cart show' do
 
         expect(page).to have_content("Total: $124")
       end
+
+      describe 'As a visitor' do
+        it "I must register or login before checking out" do
+          visit '/cart'
+
+          expect(page).to_not have_link("Checkout")
+
+          within("#bottom-text") do
+            expect(page).to have_content("You must register or log in to finish the checkout process")
+            expect(page).to have_link("register")
+            expect(page).to have_link("log in")
+          end
+
+          click_on "register"
+          expect(current_path).to eq('/register')
+
+          visit '/cart'
+
+          click_on "log in"
+          expect(current_path).to eq('/login')
+        end
+      end
     end
   end
+
   describe "When I haven't added anything to my cart" do
     describe "and visit my cart show page" do
       it "I see a message saying my cart is empty" do
@@ -71,5 +94,15 @@ RSpec.describe 'Cart show' do
       end
 
     end
+
   end
 end
+#
+# User Story 25, Visitors must register or log in to check out
+#
+# As a visitor
+# When I have items in my cart
+# And I visit my cart
+# I see information telling me I must register or log in to finish the checkout process
+# The word "register" is a link to the registration page
+# The words "log in" is a link to the login page
