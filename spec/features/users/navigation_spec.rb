@@ -132,7 +132,7 @@ RSpec.describe "navigation" do
     end
     it 'a merchant' do
       visit '/'
-      shop = create(:merchant, merchant: shop)
+      shop = create(:merchant)
       merchant = create(:merchant_user)
       require "pry"; binding.pry
       click_link "Log in"
