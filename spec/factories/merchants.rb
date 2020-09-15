@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :merchant do
-    name { "#{Faker::Sports::Football.team} Shop" }
+    name { "#{Faker::Company.name} Shop" }
     address { Faker::Address.street_address }
     city { Faker::Address.city }
     state { Faker::Address.state_abbr }

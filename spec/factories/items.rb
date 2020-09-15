@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
     name { Faker::Games::Zelda.item }
-    description { Faker::Quotes::Chiquito.sentence }
+    description { Faker::TvShows::MichaelScott.quote }
     price { Faker::Number.number(digits: 3) }
     image { Faker::Avatar.image }
     inventory { Faker::Number.number(digits: 4) }
