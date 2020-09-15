@@ -15,6 +15,10 @@ RSpec.describe User do
       it {should validate_confirmation_of :password}
   end
 
+  describe "relationships" do
+    it { should have_many :orders }
+  end
+
   describe 'roles' do
     it 'can be created as a regular user' do
       user = User.create!(name: "bob", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 0)
