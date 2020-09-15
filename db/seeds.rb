@@ -19,6 +19,6 @@ Item.destroy_all
   3.times do
     item = FactoryBot.create(:item, merchant_id: shop.id)
     order = FactoryBot.create(:order, user_id: user.id)
-    FactoryBot.create(:item_order, order_id: order.id, item_id: item.id)
+    FactoryBot.create(:item_order, order_id: order.id, item_id: item.id, price: item.price)
   end
 end
