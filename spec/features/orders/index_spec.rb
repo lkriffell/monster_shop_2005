@@ -16,6 +16,8 @@ describe 'Orders index page' do
     @dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
 
     #orders
+    allow_any_instance_of(Order).to receive(:status).and_return("pending")
+
     @order1 = @user.orders.create!(name: @user.name, address: @user.address, city: @user.city, state: @user.state, zip: @user.zip)
 
     @order1.item_orders.create({
@@ -53,12 +55,10 @@ describe 'Orders index page' do
     visit "/profile"
     click_on "My Orders"
 
-    allow_any_instance_of(Order).to receive(:status).and_return("pending")
-
     within("#order-#{@order1.id}") do
       expect(page).to have_content(@order1.id)
       expect(page).to have_content(@order1.updated_at)
-      # expect(page).to have_content(@order1.status)
+      expect(page).to have_content(@order1.status)
       expect(page).to have_content(@order1.total_quantity)
       expect(page).to have_content(@order1.grandtotal)
     end
@@ -66,7 +66,7 @@ describe 'Orders index page' do
     within("#order-#{@order2.id}") do
       expect(page).to have_content(@order2.id)
       expect(page).to have_content(@order2.updated_at)
-      # expect(page).to have_content(@order2.status)
+      expect(page).to have_content(@order2.status)
       expect(page).to have_content(@order2.total_quantity)
       expect(page).to have_content(@order2.grandtotal)
     end
