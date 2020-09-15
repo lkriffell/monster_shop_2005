@@ -27,7 +27,7 @@ describe "Logging In as" do
 
     click_button "Log in"
 
-    expect(current_path).to eq("/merchant/dashboard")
+    expect(current_path).to eq(merchant_dashboard_path)
 
     expect(page).to have_content("Hello, #{merchant.name}. You are now logged in.")
   end
@@ -42,7 +42,7 @@ describe "Logging In as" do
 
     click_button "Log in"
 
-    expect(current_path).to eq("/admin/dashboard")
+    expect(current_path).to eq(admin_dashboard_path)
 
     expect(page).to have_content("Hello, #{admin.name}. You are now logged in.")
   end
@@ -104,7 +104,7 @@ describe "Logging In as" do
 
     visit "/login"
 
-    expect(current_path).to eq('/merchant/dashboard')
+    expect(current_path).to eq(merchant_dashboard_path)
     expect(page).to have_content("You are already logged in.")
   end
 
@@ -120,7 +120,7 @@ describe "Logging In as" do
 
     visit "/login"
 
-    expect(current_path).to eq('/admin/dashboard')
+    expect(current_path).to eq(admin_dashboard_path)
     expect(page).to have_content("You are already logged in.")
   end
 

@@ -125,7 +125,7 @@ RSpec.describe "navigation" do
         click_link 'Home'
 
         click_link 'Dashboard'
-        expect(current_path).to eq('/admin/dashboard')
+        expect(current_path).to eq(admin_dashboard_path)
         click_link 'Home'
 
         click_link 'All Users'
@@ -184,7 +184,7 @@ RSpec.describe "navigation" do
         click_link 'Home'
 
         click_link 'Dashboard'
-        expect(current_path).to eq('/merchant/dashboard')
+        expect(current_path).to eq(merchant_dashboard_path)
         click_link 'Home'
 
         click_link 'Log out'
@@ -199,9 +199,9 @@ RSpec.describe "navigation" do
 
       visit '/profile'
       expect(page).to have_content("404")
-      visit '/merchant/dashboard'
+      visit merchant_dashboard_path
       expect(page).to have_content("404")
-      visit '/admin/dashboard'
+      visit admin_dashboard_path
       expect(page).to have_content("404")
       visit '/admin/users'
       expect(page).to have_content("404")
@@ -216,9 +216,9 @@ RSpec.describe "navigation" do
       fill_in :password, with: "12345"
       click_button "Log in"
 
-      visit '/merchant/dashboard'
+      visit merchant_dashboard_path
       expect(page).to have_content("404")
-      visit '/admin/dashboard'
+      visit admin_dashboard_path
       expect(page).to have_content("404")
       visit '/admin/users'
       expect(page).to have_content("404")
@@ -233,7 +233,7 @@ RSpec.describe "navigation" do
       fill_in :password, with: "12345"
       click_button "Log in"
 
-      visit '/merchant/dashboard'
+      visit merchant_dashboard_path
       expect(page).to have_content("404")
       visit '/cart'
       expect(page).to have_content("404")
@@ -249,7 +249,7 @@ RSpec.describe "navigation" do
       fill_in :password, with: "12345"
       click_button "Log in"
 
-      visit '/admin/dashboard'
+      visit admin_dashboard_path
       expect(page).to have_content("404")
       visit '/admin/users'
       expect(page).to have_content("404")

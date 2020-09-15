@@ -21,9 +21,9 @@
         <%= link_to "Log in", "/login" %>
       <% elsif current_user.admin? %>
         <%= link_to "All Users", "/admin/users" %>
-        <%= link_to "Dashboard", "/admin/dashboard" %>
+        <%= link_to "Dashboard", admin_dashboard_path %>
       <% elsif current_user.merchant? %>
-        <%= link_to "Dashboard", "/merchant/dashboard" %>
+        <%= link_to "Dashboard", merchant_dashboard_path %>
       <% end %>
 
       <%= link_to "Profile", "/profile" if current_user %>

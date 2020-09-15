@@ -20,9 +20,9 @@ class SessionsController < ApplicationController
 
   def redirect_user(user)
     if user.merchant?
-      redirect_to '/merchant/dashboard'
+      redirect_to merchant_dashboard_path
     elsif user.admin?
-      redirect_to '/admin/dashboard'
+      redirect_to admin_dashboard_path
     else
       redirect_to '/profile'
     end

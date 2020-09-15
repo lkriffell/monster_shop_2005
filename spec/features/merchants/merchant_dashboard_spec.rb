@@ -8,7 +8,7 @@ RSpec.describe "merchant dashboard" do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
-      visit 'merchant/dashboard'
+      visit merchant_dashboard_path
 
       expect(page).to have_content(bike_shop.name)
       expect(page).to have_content("#{bike_shop.address} #{bike_shop.city} #{bike_shop.state} #{bike_shop.zip}")
@@ -25,7 +25,7 @@ RSpec.describe "merchant dashboard" do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
-      visit 'merchant/dashboard'
+      visit merchant_dashboard_path
 
       expect(page).to have_link(order1.id)
       expect(page).to have_content(order1.created_at.to_s[0..9])
@@ -39,7 +39,7 @@ RSpec.describe "merchant dashboard" do
       click_link order1.id
       expect(current_path).to eq("/orders/#{order1.id}")
 
-      visit '/merchant/dashboard'
+      visit merchant_dashboard_path
 
       click_link order2.id
       expect(current_path).to eq("/orders/#{order2.id}")
