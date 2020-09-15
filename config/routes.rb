@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
   get '/profile', to: 'users#show'
+  get '/profile/edit', to: 'users#edit'
+  get '/profile/edit/password', to: 'users#edit_password'
+  patch '/profile', to: 'users#update'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -52,6 +55,7 @@ Rails.application.routes.draw do
   delete "/cart", to: "cart#empty"
   delete "/cart/:item_id", to: "cart#remove_item"
 
+  get "/profile/orders", to: "orders#index"
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"
