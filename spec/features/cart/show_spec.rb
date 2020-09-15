@@ -77,6 +77,26 @@ RSpec.describe 'Cart show page' do
           expect(current_path).to eq('/login')
         end
       end
+
+      describe 'As a registered user' do
+        it "I can checkout" do
+          user = create(:user)
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+          visit '/cart'
+
+          expect(page).to have_link("Checkout")
+
+          within("#bottom-text") do
+            expect(page).not_to have_content("You must register or log in to finish the checkout process")
+            expect(page).not_to have_link("register")
+            expect(page).not_to have_link("log in")
+          end
+
+          click_on "Checkout"
+          expect(current_path).to eq('/orders/new')
+        end
+      end
     end
   end
 
@@ -92,17 +112,6 @@ RSpec.describe 'Cart show page' do
         visit '/cart'
         expect(page).to_not have_link("Empty Cart")
       end
-
     end
-
   end
 end
-#
-# User Story 25, Visitors must register or log in to check out
-#
-# As a visitor
-# When I have items in my cart
-# And I visit my cart
-# I see information telling me I must register or log in to finish the checkout process
-# The word "register" is a link to the registration page
-# The words "log in" is a link to the login page
