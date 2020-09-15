@@ -139,7 +139,8 @@ RSpec.describe "navigation" do
     it 'a merchant' do
       visit '/'
 
-      user = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1)
+      bike_shop = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      merchant = User.create!(name: "bob", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1, merchant_id: bike_shop.id)
 
       click_link "Log in"
 
@@ -161,7 +162,7 @@ RSpec.describe "navigation" do
         expect(page).not_to have_link('Log in')
         expect(page).to have_link('Profile')
         expect(page).to have_link('Dashboard')
-        expect(page).to have_content("Logged in as #{user.name}")
+        expect(page).to have_content("Logged in as #{merchant.name}")
 
         click_link 'Home'
         expect(current_path).to eq('/')
@@ -239,7 +240,8 @@ RSpec.describe "navigation" do
     end
 
     it "merchant from accessing admin" do
-      User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1)
+      bike_shop = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      merchant = User.create!(name: "bob", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1, merchant_id: bike_shop.id)
       visit '/'
 
       click_link "Log in"

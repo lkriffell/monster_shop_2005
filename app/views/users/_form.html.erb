@@ -1,28 +1,52 @@
 <%= form_tag path, method: method do %>
 
-  <label>Name:</label>
-  <%= text_field_tag :name, @user_params[:name] %><br>
+  <% if current_user.nil? %>
 
-  <label>Address:</label>
-  <%= text_field_tag :address, @user_params[:address] %><br>
+    <label>Name:</label>
+    <%= text_field_tag :name, @user_params[:name] %><br>
 
-  <label>City:</label>
-  <%= text_field_tag(:city, @user_params[:city]) %><br>
+    <label>Address:</label>
+    <%= text_field_tag :address, @user_params[:address] %><br>
 
-  <label>State:</label>
-  <%= text_field_tag :state, @user_params[:state] %><br>
+    <label>City:</label>
+    <%= text_field_tag(:city, @user_params[:city]) %><br>
 
-  <label>Zip:</label>
-  <%= text_field_tag :zip, @user_params[:zip] %><br>
+    <label>State:</label>
+    <%= text_field_tag :state, @user_params[:state] %><br>
 
-  <label>Email:</label>
-  <%= text_field_tag :email %><br>
+    <label>Zip:</label>
+    <%= text_field_tag :zip, @user_params[:zip] %><br>
 
-  <label>Password:</label>
-  <%= text_field_tag :password %><br>
+    <label>Email:</label>
+    <%= text_field_tag :email %><br>
 
-  <label>Confirm Password:</label>
-  <%= text_field_tag :password_confirmation %><br>
+    <label>Password:</label>
+    <%= text_field_tag :password %><br>
+
+    <label>Confirm Password:</label>
+    <%= text_field_tag :password_confirmation %><br>
+
+  <% else %>
+
+    <label>Name:</label>
+    <%= text_field_tag :name, current_user.name %><br>
+
+    <label>Address:</label>
+    <%= text_field_tag :address, current_user.address %><br>
+
+    <label>City:</label>
+    <%= text_field_tag(:city, current_user.city) %><br>
+
+    <label>State:</label>
+    <%= text_field_tag :state, current_user.state %><br>
+
+    <label>Zip:</label>
+    <%= text_field_tag :zip, current_user.zip %><br>
+
+    <label>Email:</label>
+    <%= text_field_tag :email, current_user.email %><br>
+
+  <% end %>
 
   <%= submit_tag button_text %>
 
