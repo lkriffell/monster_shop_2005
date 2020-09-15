@@ -1,4 +1,4 @@
-class Item <ApplicationRecord
+class Item < ApplicationRecord
   belongs_to :merchant
   has_many :reviews, dependent: :destroy
   has_many :item_orders
@@ -23,6 +23,19 @@ class Item <ApplicationRecord
 
   def no_orders?
     item_orders.empty?
+  end
+
+  def inventory_has_reached_limit?(cart)
+    cart.contents[self.id.to_s] == self.inventory
+  end
+
+  def self.items_by_popularity(number, order = 'desc')
+    select("items.name, sum(item_orders.quantity) AS total_quantity")
+    .joins(:item_orders)
+    .where(active?: true)
+    .group(:name)
+    .order("sum(item_orders.quantity) #{order}")
+    .limit(number)
   end
 
 end

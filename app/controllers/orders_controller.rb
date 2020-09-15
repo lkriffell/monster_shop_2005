@@ -1,7 +1,10 @@
 class OrdersController <ApplicationController
 
-  def new
+  def index
+    @orders = Order.where(user_id: current_user.id)
+  end
 
+  def new
   end
 
   def show
@@ -9,7 +12,8 @@ class OrdersController <ApplicationController
   end
 
   def create
-    order = Order.create(order_params)
+    order = Order.new(order_params)
+    order.user = current_user
     if order.save
       cart.items.each do |item,quantity|
         order.item_orders.create({

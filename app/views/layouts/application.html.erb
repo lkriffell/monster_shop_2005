@@ -11,24 +11,10 @@
   <body>
 
     <nav class = "topnav">
-      <%= link_to "Home", "/" %>
-      <%= link_to "All Merchants", "/merchants"%>
-      <%= link_to "All Items", "/items"%>
-      <%= link_to "Cart: #{cart.total_items}", "/cart" unless current_admin? %>
-
-      <% if current_user == nil %>
-        <%= link_to "Register", "/register" %>
-        <%= link_to "Log in", "/login" %>
-      <% elsif current_user.admin? %>
-        <%= link_to "All Users", "/admin/users" %>
-        <%= link_to "Dashboard", "/admin/dashboard" %>
-      <% elsif current_user.merchant? %>
-        <%= link_to "Dashboard", "/merchant/dashboard" %>
-      <% end %>
-
-      <%= link_to "Profile", "/profile" if current_user %>
-      <%= link_to "Log out", "/logout" if current_user %>
-      <h4><%= "Logged in as #{current_user.name}" unless current_user.nil? %></h4>
+        <%= render partial: './users/visitor_nav' if current_user.nil? %>
+        <%= render partial: './users/user_nav' if current_user && current_user.role == "regular" %>
+        <%= render partial: './users/admin_nav' if current_user && current_user.admin? %>
+        <%= render partial: './users/merchant_nav' if current_user && current_user.merchant? %>
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">

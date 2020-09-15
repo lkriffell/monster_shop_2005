@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
   get '/profile', to: 'users#show'
+  get '/profile/edit', to: 'users#edit'
+  get '/profile/edit/password', to: 'users#edit_password'
+  patch '/profile', to: 'users#update'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -44,11 +47,15 @@ Rails.application.routes.draw do
   patch "/reviews/:id", to: "reviews#update"
   delete "/reviews/:id", to: "reviews#destroy"
 
+  patch "cart/:item_id", to: "cart#update"
+  # patch "/:item_id", action: :update, controller: "items"
+  #above route is a  name space, namespace: cart do
   post "/cart/:item_id", to: "cart#add_item"
   get "/cart", to: "cart#show"
   delete "/cart", to: "cart#empty"
   delete "/cart/:item_id", to: "cart#remove_item"
 
+  get "/profile/orders", to: "orders#index"
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"

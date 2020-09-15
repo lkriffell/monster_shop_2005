@@ -24,6 +24,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def edit_password
+  end
+
+  def update
+    current_user.attributes = user_params
+    if current_user.save
+      flash[:succes] = "Your information has been updated."
+    else
+      flash[:error] = current_user.errors.full_messages.uniq.to_sentence
+    end
+    redirect_to '/profile'
+  end
+
   private
     def user_params
       params.permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
