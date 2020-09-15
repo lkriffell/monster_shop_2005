@@ -1,0 +1,34 @@
+<h1>My Orders</h1>
+
+<center>
+<table class = "cart-items">
+  <tr>
+    <th>Order ID</th>
+    <th>Last Update</th>
+    <th>Status</th>
+    <th>Quantity of Items</th>
+    <th>Grandtotal</th>
+  </tr>
+  <% @orders.each do |order| %>
+    <tr id= "order-<%=order.id%>">
+      <td>
+        <p align = "center">
+          <%= order.id %>
+        </p>
+      </td>
+      <td>
+        <p> <%= order.updated_at %> </p>
+      </td>
+      <td>
+        <p> <%= order.status %> </p>
+      </td>
+      <td>
+        <p> <%= order.total_items %> </p>
+      </td>
+      <td>
+        <p><%=number_to_currency(order.grandtotal)%></p>
+      </td>
+    </tr>
+  <% end %>
+</table>
+</center>
