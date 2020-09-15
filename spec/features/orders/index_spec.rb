@@ -59,7 +59,7 @@ describe 'Orders index page' do
       expect(page).to have_content(@order1.id)
       expect(page).to have_content(@order1.updated_at)
       # expect(page).to have_content(@order1.status)
-      expect(page).to have_content(@order1.total_items)
+      expect(page).to have_content(@order1.total_quantity)
       expect(page).to have_content(@order1.grandtotal)
     end
 
@@ -67,10 +67,8 @@ describe 'Orders index page' do
       expect(page).to have_content(@order2.id)
       expect(page).to have_content(@order2.updated_at)
       # expect(page).to have_content(@order2.status)
-      expect(page).to have_content(@order2.total_items)
+      expect(page).to have_content(@order2.total_quantity)
       expect(page).to have_content(@order2.grandtotal)
     end
-
-    save_and_open_page
   end
 end
