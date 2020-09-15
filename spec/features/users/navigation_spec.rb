@@ -38,14 +38,11 @@ RSpec.describe "navigation" do
     it 'a user' do
       visit '/'
 
-      user = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 0)
+      user = create(:user)
       click_link "Log in"
 
-      email = "someone@gmail.com"
-      password = "12345"
-
-      fill_in :email, with: email
-      fill_in :password, with: password
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
 
       click_button "Log in"
 
@@ -86,14 +83,11 @@ RSpec.describe "navigation" do
     it 'an admin' do
       visit '/'
 
-      user = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 2)
+      admin = create(:admin)
       click_link "Log in"
 
-      email = "someone@gmail.com"
-      password = "12345"
-
-      fill_in :email, with: email
-      fill_in :password, with: password
+      fill_in :email, with: admin.email
+      fill_in :password, with: admin.password
 
       click_button "Log in"
 
@@ -107,7 +101,7 @@ RSpec.describe "navigation" do
         expect(page).to have_link('Profile')
         expect(page).to have_link('Dashboard')
         expect(page).to have_link('All Users')
-        expect(page).to have_content("Logged in as #{user.name}")
+        expect(page).to have_content("Logged in as #{admin.name}")
 
         click_link 'Home'
         expect(current_path).to eq('/')
@@ -138,16 +132,13 @@ RSpec.describe "navigation" do
     end
     it 'a merchant' do
       visit '/'
-
-      user = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1)
-
+      shop = create(:merchant, merchant: shop)
+      merchant = create(:merchant_user)
+      require "pry"; binding.pry
       click_link "Log in"
 
-      email = "someone@gmail.com"
-      password = "12345"
-
-      fill_in :email, with: email
-      fill_in :password, with: password
+      fill_in :email, with: merchant.email
+      fill_in :password, with: merchant.password
 
       click_button "Log in"
 
@@ -161,7 +152,7 @@ RSpec.describe "navigation" do
         expect(page).not_to have_link('Log in')
         expect(page).to have_link('Profile')
         expect(page).to have_link('Dashboard')
-        expect(page).to have_content("Logged in as #{user.name}")
+        expect(page).to have_content("Logged in as #{merchant.name}")
 
         click_link 'Home'
         expect(current_path).to eq('/')
