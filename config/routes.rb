@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/register', to: 'users#create'
   get '/profile', to: 'users#show'
   get '/profile/edit', to: 'users#edit'
+  get '/profile/edit/password', to: 'users#edit_password'
   patch '/profile', to: 'users#update'
 
   get '/login', to: 'sessions#new'

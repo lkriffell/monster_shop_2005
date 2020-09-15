@@ -1,5 +1,4 @@
 <%= form_tag path, method: method do %>
-
   <% if current_user.nil? %>
 
     <label>Name:</label>
@@ -46,8 +45,11 @@
     <label>Email:</label>
     <%= text_field_tag :email, current_user.email %><br>
 
+    <label>Please enter password to confirm:</label>
+    <%=text_field_tag :password, current_user.password %>
+
   <% end %>
 
   <%= submit_tag button_text %>
-
-<% end %>
+  <%= link_to "Edit Password", "/profile/edit/password" %>
+  <% end %>
