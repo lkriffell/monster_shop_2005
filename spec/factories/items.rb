@@ -4,7 +4,7 @@ FactoryBot.define do
     description { Faker::TvShows::MichaelScott.quote }
     price { Faker::Number.number(digits: 3) }
     image { Faker::Avatar.image }
-    inventory { Faker::Number.number(digits: 4) }
+    inventory { Faker::Number.number(digits: 2) }
     #association :merchant
   end
 end
