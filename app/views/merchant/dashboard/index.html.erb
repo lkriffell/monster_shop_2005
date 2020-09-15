@@ -3,6 +3,8 @@
 
 <h3><%= @merchant.address %> <%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h3>
 
+<p><%=link_to "My Items", "/merchant/items" %></p>
+
 <ul>
   <% @merchant.orders.each do |order| %>
     <li>Order: <%= link_to order.id, "/orders/#{order.id}"%></li>
