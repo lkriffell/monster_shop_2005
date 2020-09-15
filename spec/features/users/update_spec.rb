@@ -47,4 +47,53 @@ describe 'User profile edit page' do
     expect(page).to have_content(new_email)
     expect(page).not_to have_content(user.password)
   end
+  it 'has an edit password link which allows user to edit password' do
+    user = User.create!(name: "Bob", password: '12345', address: "street", city: "Los Angeles", state: "CA", zip:"90210", email: "someone@gmail.com", role: 0)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit "/profile"
+    click_link "Edit Profile"
+    click_link "Edit Password"
+
+    expect(current_path).to eq('/profile/edit/password')
+
+      expect(page).to have_field(:password)
+      expect(page).to have_field(:password_confirmation)
+
+    password = "123"
+
+    fill_in :password, with: password
+    fill_in :password_confirmation, with: password
+
+    click_on "Update Password"
+    expect(current_path).to eq('/profile')
+
+    expect(page).to have_content("Your information has been updated.")
+  end
+
+  it 'has an edit password link which fails when user enters different confirmation password' do
+    user = User.create!(name: "Bob", password: '12345', address: "street", city: "Los Angeles", state: "CA", zip:"90210", email: "someone@gmail.com", role: 0)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit "/profile"
+    click_link "Edit Profile"
+    click_link "Edit Password"
+
+    expect(current_path).to eq('/profile/edit/password')
+
+      expect(page).to have_field(:password)
+      expect(page).to have_field(:password_confirmation)
+
+    password = "123"
+
+    fill_in :password, with: password
+    fill_in :password_confirmation, with: "Hi"
+
+    click_on "Update Password"
+    expect(current_path).to eq('/profile')
+
+    expect(page).to have_content("Password confirmation doesn't match Password")
+  end
 end

@@ -27,10 +27,16 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def edit_password
+  end
+
   def update
     current_user.attributes = user_params
-    current_user.save
-    flash[:succes] = "Your information has been updated."
+    if current_user.save
+      flash[:succes] = "Your information has been updated."
+    else
+      flash[:error] = current_user.errors.full_messages.uniq.to_sentence
+    end
     redirect_to '/profile'
   end
 
