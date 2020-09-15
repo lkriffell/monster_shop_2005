@@ -17,6 +17,7 @@ RSpec.describe User do
 
   describe 'roles' do
     it 'can be created as a regular user' do
+      bike_shop = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       user = User.create!(name: "bob", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 0)
 
       expect(user.role).to eq("regular")
@@ -24,10 +25,11 @@ RSpec.describe User do
     end
 
     it 'can be created as a merchant user' do
-      user = User.create!(name: "bob", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1)
+      bike_shop = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      merchant = User.create!(name: "bob", password: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1, merchant_id: bike_shop.id)
 
-      expect(user.role).to eq("merchant")
-      expect(user.merchant?).to be_truthy
+      expect(merchant.role).to eq("merchant")
+      expect(merchant.merchant?).to be_truthy
     end
   end
 end
