@@ -29,6 +29,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem "factory_bot_rails"
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'orderly'
+  gem 'nyan-cat-formatter'
 end
 
 group :development do

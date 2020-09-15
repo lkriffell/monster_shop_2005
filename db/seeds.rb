@@ -12,6 +12,7 @@ Merchant.destroy_all
 Item.destroy_all
 
 
+
 5.times do
   shop = FactoryBot.create(:merchant)
   user = FactoryBot.create(:user)

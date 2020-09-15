@@ -23,6 +23,24 @@ class CartController < ApplicationController
     session[:cart].delete(params[:item_id])
     redirect_to '/cart'
   end
-
+  
+  def update
+    item = Item.find(params[:item_id])
+    case params[:add]
+    when "true"
+      if item.inventory_has_reached_limit?(cart)
+        flash[:error] = "You've reached the end of this merchant's inventory"
+      else
+        cart.add_item(item.id.to_s)
+      end
+    when "false"
+      if cart.contents[item.id.to_s] == 1
+        session[:cart].delete(params[:item_id])
+      else
+        cart.remove_item(item.id.to_s)
+      end
+    end
+    redirect_to "/cart"
+  end
 
 end
