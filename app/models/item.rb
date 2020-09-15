@@ -25,8 +25,8 @@ class Item <ApplicationRecord
     item_orders.empty?
   end
 
-  def inventory_has_reached_limit?(cart, item)
-    cart.contents[item.id.to_s] == item.inventory
+  def inventory_has_reached_limit?(cart)
+    cart.contents[self.id.to_s] == self.inventory
   end
 
 end

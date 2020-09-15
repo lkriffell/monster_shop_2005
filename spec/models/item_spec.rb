@@ -57,17 +57,17 @@ describe Item, type: :model do
       @cart_1 = Cart.new({
         @tire.id.to_s => 1
         })
-    expect(@tire.inventory_has_reached_limit?(@cart_1, @tire)).to eq(false)
+    expect(@tire.inventory_has_reached_limit?(@cart_1)).to eq(false)
 
       @cart_2 = Cart.new({
         @tire.id.to_s => 2
         })
-    expect(@tire.inventory_has_reached_limit?(@cart_2, @tire)).to eq(false)
+    expect(@tire.inventory_has_reached_limit?(@cart_2)).to eq(false)
 
       @cart_3 = Cart.new({
         @tire.id.to_s => 3
         })
-    expect(@tire.inventory_has_reached_limit?(@cart_3, @tire)).to eq(true)
+    expect(@tire.inventory_has_reached_limit?(@cart_3)).to eq(true)
 
   end
 end
