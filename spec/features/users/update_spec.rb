@@ -33,6 +33,7 @@ describe 'User profile edit page' do
     fill_in :state, with: new_state
     fill_in :zip, with: new_zip
     fill_in :email, with: new_email
+    fill_in :password, with: user.password
 
     click_on "Update Profile"
     expect(current_path).to eq('/profile')
@@ -47,6 +48,26 @@ describe 'User profile edit page' do
     expect(page).to have_content(new_email)
     expect(page).not_to have_content(user.password)
   end
+  it 'fails to update when email is not unique' do
+    user = User.create!(name: "Bob", password: '12345', address: "street", city: "Los Angeles", state: "CA", zip:"90210", email: "someone@gmail.com", role: 0)
+    user2 = User.create!(name: "John", password: '12345', address: "street", city: "Los Angeles", state: "CA", zip:"90210", email: "someone.else@gmail.com", role: 0)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit "/profile"
+    click_link "Edit Profile"
+
+    new_email = "someone.else@gmail.com"
+
+    fill_in :email, with: new_email
+    fill_in :password, with: user.password
+
+    click_on "Update Profile"
+    expect(current_path).to eq('/profile')
+
+    expect(page).to have_content("Email has already been taken")
+  end
+
   it 'has an edit password link which allows user to edit password' do
     user = User.create!(name: "Bob", password: '12345', address: "street", city: "Los Angeles", state: "CA", zip:"90210", email: "someone@gmail.com", role: 0)
 
