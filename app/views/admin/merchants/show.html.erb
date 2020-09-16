@@ -1,4 +1,4 @@
-<% if @merchant %>
+
 <h1><%= @merchant.name %></h1>
 
 <h3><%= @merchant.address %> <%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h3>
@@ -13,4 +13,3 @@
     <li>Order Date: <%= order.created_at.to_s[0..9] %></li><br>
   <% end %>
 </ul>
-<% end %>
