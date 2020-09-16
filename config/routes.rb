@@ -17,10 +17,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: "dashboard#index"
     get '/users', to: "dashboard#show_users"
+    get "/merchants/:id", to: "merchants#show"
   end
 
   namespace :merchant do
     get '/dashboard', to: "dashboard#index"
+    get '/items', to: "items#index"
   end
 
   get "/merchants", to: "merchants#index"
