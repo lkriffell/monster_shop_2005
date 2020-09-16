@@ -72,11 +72,3 @@ RSpec.describe 'merchant index page', type: :feature do
     end
   end
 end
-
-# User Story 37, Admin can see a merchant's dashboard
-#
-# As an admin user
-# When I visit the merchant index page ("/merchants")
-# And I click on a merchant's name,
-# Then my URI route should be ("/admin/merchants/6")
-# Then I see everything that merchant would see
