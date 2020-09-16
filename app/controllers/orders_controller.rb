@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @merchant = Merchant.find(current_user.merchant_id)
     @order = Order.find(params[:id])
   end
 

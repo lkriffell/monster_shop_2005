@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#destroy'
 
+  get "/item_orders/:id/fulfill", to: "item_orders#update"
+
   namespace :admin do
     get '/dashboard', to: "dashboard#index"
     get '/users', to: "dashboard#show_users"
