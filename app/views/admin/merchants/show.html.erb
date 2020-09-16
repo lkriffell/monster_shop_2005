@@ -1,0 +1,15 @@
+
+<h1><%= @merchant.name %></h1>
+
+<h3><%= @merchant.address %> <%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h3>
+
+<p><%=link_to "My Items", "/merchant/items" %></p>
+
+<ul>
+  <% @merchant.orders.each do |order| %>
+    <li>Order: <%= link_to order.id, "/orders/#{order.id}"%></li>
+    <li>Quantity: <%= order.total_quantity %></li>
+    <li>Subtotal: <%= order.grandtotal %></li>
+    <li>Order Date: <%= order.created_at.to_s[0..9] %></li><br>
+  <% end %>
+</ul>
