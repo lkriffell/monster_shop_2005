@@ -17,14 +17,14 @@ RSpec.describe "User" do
       zip = "12345"
       email = "someone@gmail.com"
 
-      fill_in :name, with: name
-      fill_in :address, with: address
-      fill_in :city, with: city
-      fill_in :state, with: state
-      fill_in :zip, with: zip
-      fill_in :email, with: email
-      fill_in :password, with: password
-      fill_in :password_confirmation, with: password
+      fill_in :user_name, with: name
+      fill_in :user_address, with: address
+      fill_in :user_city, with: city
+      fill_in :user_state, with: state
+      fill_in :user_zip, with: zip
+      fill_in :user_email, with: email
+      fill_in :user_password, with: password
+      fill_in :user_password_confirmation, with: password
 
       click_button "Register"
 
@@ -50,26 +50,26 @@ RSpec.describe "User" do
         zip = "12345"
         email = "someone@gmail.com"
 
-        fill_in :name, with: name
-        fill_in :address, with: address
-        fill_in :city, with: city
-        fill_in :state, with: state
-        fill_in :zip, with: zip
-        fill_in :email, with: email
-        fill_in :password, with: password
-        fill_in :password_confirmation, with: password
+        fill_in :user_name, with: name
+        fill_in :user_address, with: address
+        fill_in :user_city, with: city
+        fill_in :user_state, with: state
+        fill_in :user_zip, with: zip
+        fill_in :user_email, with: email
+        fill_in :user_password, with: password
+        fill_in :user_password_confirmation, with: password
 
         click_button "Register"
         expect(current_path).to eq("/register")
 
         expect(page).to have_content("Email has already been taken")
 
-        expect(find_field(:name).value).to eq(name)
-        expect(find_field(:address).value).to eq(address)
-        expect(find_field(:city).value).to eq(city)
-        expect(find_field(:state).value).to eq(state)
-        expect(find_field(:zip).value).to eq(zip)
-        expect(find_field(:email).value).to eq(nil)
+        expect(find_field(:user_name).value).to eq(name)
+        expect(find_field(:user_address).value).to eq(address)
+        expect(find_field(:user_city).value).to eq(city)
+        expect(find_field(:user_state).value).to eq(state)
+        expect(find_field(:user_zip).value).to eq(zip)
+        expect(find_field(:user_email).value).to eq(nil)
         expect(find_field(:password).value).to eq(nil)
       end
 
@@ -80,14 +80,14 @@ RSpec.describe "User" do
 
         expect(current_path).to eq("/register")
 
-        fill_in :name, with: ""
-        fill_in :address, with: ""
-        fill_in :city, with: ""
-        fill_in :state, with: ""
-        fill_in :zip, with: ""
-        fill_in :email, with: ""
-        fill_in :password, with: ""
-        fill_in :password_confirmation, with: ""
+        fill_in :user_name, with: ""
+        fill_in :user_address, with: ""
+        fill_in :user_city, with: ""
+        fill_in :user_state, with: ""
+        fill_in :user_zip, with: ""
+        fill_in :user_email, with: ""
+        fill_in :user_password, with: ""
+        fill_in :user_password_confirmation, with: ""
 
         click_button "Register"
 
@@ -109,14 +109,14 @@ RSpec.describe "User" do
         zip = "12345"
         email = "someone@gmail.com"
 
-        fill_in :name, with: name
-        fill_in :address, with: address
-        fill_in :city, with: city
-        fill_in :state, with: state
-        fill_in :zip, with: zip
-        fill_in :email, with: email
-        fill_in :password, with: password
-        fill_in :password_confirmation, with: "password"
+        fill_in :user_name, with: name
+        fill_in :user_address, with: address
+        fill_in :user_city, with: city
+        fill_in :user_state, with: state
+        fill_in :user_zip, with: zip
+        fill_in :user_email, with: email
+        fill_in :user_password, with: password
+        fill_in :user_password_confirmation, with: "password"
 
         click_button "Register"
 

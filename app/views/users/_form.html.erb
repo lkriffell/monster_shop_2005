@@ -1,55 +1,36 @@
-<%= form_tag path, method: method do %>
-  <% if current_user.nil? %>
+<%= form_for @user, url: url, button_text: button_text do |f| %>
 
-    <label>Name:</label>
-    <%= text_field_tag :name, @user_params[:name] %><br>
+    <%= f.label :Name %>
+    <%= f.text_field :name %><br>
 
-    <label>Address:</label>
-    <%= text_field_tag :address, @user_params[:address] %><br>
 
-    <label>City:</label>
-    <%= text_field_tag(:city, @user_params[:city]) %><br>
+    <%= f.label :Address %>
+    <%= f.text_field :address %><br>
 
-    <label>State:</label>
-    <%= text_field_tag :state, @user_params[:state] %><br>
 
-    <label>Zip:</label>
-    <%= text_field_tag :zip, @user_params[:zip] %><br>
+    <%= f.label :City %>
+    <%= f.text_field :city %><br>
 
-    <label>Email:</label>
-    <%= text_field_tag :email %><br>
 
-    <label>Password:</label>
-    <%= text_field_tag :password %><br>
+    <%= f.label :State %>
+    <%= f.text_field :state %><br>
 
-    <label>Confirm Password:</label>
-    <%= text_field_tag :password_confirmation %><br>
 
-  <% else %>
+    <%= f.label :Zip %>
+    <%= f.text_field :zip%><br>
 
-    <label>Name:</label>
-    <%= text_field_tag :name, current_user.name %><br>
 
-    <label>Address:</label>
-    <%= text_field_tag :address, current_user.address %><br>
+    <%= f.label :Email %>
+    <%= f.text_field :email %><br>
 
-    <label>City:</label>
-    <%= text_field_tag(:city, current_user.city) %><br>
 
-    <label>State:</label>
-    <%= text_field_tag :state, current_user.state %><br>
+    <%= f.label :Password %>
+    <%= f.text_field :password %><br>
 
-    <label>Zip:</label>
-    <%= text_field_tag :zip, current_user.zip %><br>
+    <%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation %><br>
 
-    <label>Email:</label>
-    <%= text_field_tag :email, current_user.email %><br>
+    <%= f.submit "#{button_text}" %>
+    <%= link_to "Edit Password", "/profile/edit/password" %>
 
-    <label>Please enter password to confirm:</label>
-    <%=text_field_tag :password, current_user.password %>
-
-  <% end %>
-
-  <%= submit_tag button_text %>
-  <%= link_to "Edit Password", "/profile/edit/password" %>
-  <% end %>
+<% end %>

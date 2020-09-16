@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def new
-    @user_params = user_params
+    @user = User.new
   end
 
   def create
@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def edit_password
@@ -40,8 +41,22 @@ class UsersController < ApplicationController
     redirect_to '/profile'
   end
 
+  def update_password
+    current_user.attributes = user_params_2
+    if current_user.save
+      flash[:succes] = "Your information has been updated."
+    else
+      flash[:error] = current_user.errors.full_messages.uniq.to_sentence
+    end
+    redirect_to '/profile'
+  end
+
   private
     def user_params
+      params.require(:user).permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
+    end
+
+    def user_params_2
       params.permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
     end
 end

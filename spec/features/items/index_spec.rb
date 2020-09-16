@@ -62,9 +62,9 @@ RSpec.describe "Items Index Page" do
       chew_toy = @brian.items.create(name: "Chew Toy", description: "Chews for days!", price: 21, image: "https://i5.walmartimages.com/asr/42ff43c6-1ba8-4061-bd67-656eee493086_1.5caa8bd92323ed8bc3e6d28b0a0cb0b9.png", active?:true, inventory: 21)
 
       flying_disc = @brian.items.create(name: "A Flying Disc", description: "Flies for days!", price: 10, image: "https://hw.menardc.com/main/items/media/CEGEN001/ProductLarge/253-0107_P_4.jpg", inventory: 32)
-
-      order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210)
-      order_2 = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210)
+      user = create(:user)
+      order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210, user: user)
+      order_2 = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210, user: user)
 
       ItemOrder.create!(order_id: order.id, price: 1.0, item_id: tennis_ball.id, quantity: 5)
       ItemOrder.create!(order_id: order.id, price: 1.0, item_id: @pull_toy.id, quantity: 1)
