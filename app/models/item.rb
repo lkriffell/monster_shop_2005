@@ -25,6 +25,10 @@ class Item < ApplicationRecord
     item_orders.empty?
   end
 
+  def inventory_has_reached_limit?(cart)
+    cart.contents[self.id.to_s] == self.inventory
+  end
+
   def self.items_by_popularity(number, order = 'desc')
     select("items.name, sum(item_orders.quantity) AS total_quantity")
     .joins(:item_orders)
@@ -33,4 +37,5 @@ class Item < ApplicationRecord
     .order("sum(item_orders.quantity) #{order}")
     .limit(number)
   end
+
 end

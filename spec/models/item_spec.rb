@@ -29,9 +29,11 @@ describe Item, type: :model do
       @chew_toy = brian.items.create(name: "Chew Toy", description: "Chews for days!", price: 21, image: "https://i5.walmartimages.com/asr/42ff43c6-1ba8-4061-bd67-656eee493086_1.5caa8bd92323ed8bc3e6d28b0a0cb0b9.png", active?:true, inventory: 21)
 
       flying_disc = brian.items.create(name: "A Flying Disc", description: "Flies for days!", price: 10, image: "https://hw.menardc.com/main/items/media/CEGEN001/ProductLarge/253-0107_P_4.jpg", inventory: 32)
+      
+      user = create(:user)
 
-      order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210)
-      order_2 = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210)
+      order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210, user: user)
+      order_2 = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210, user: user)
 
       ItemOrder.create!(order_id: order.id, price: 1.0, item_id: @tennis_ball.id, quantity: 5)
       ItemOrder.create!(order_id: order.id, price: 1.0, item_id: pull_toy.id, quantity: 1)
@@ -88,5 +90,27 @@ describe Item, type: :model do
       order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
       expect(@chain.no_orders?).to eq(false)
     end
+  end
+
+  it '#inventory_has_reached_limit?(cart, item)' do
+    @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+
+    @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 3)
+
+      @cart_1 = Cart.new({
+        @tire.id.to_s => 1
+        })
+    expect(@tire.inventory_has_reached_limit?(@cart_1)).to eq(false)
+
+      @cart_2 = Cart.new({
+        @tire.id.to_s => 2
+        })
+    expect(@tire.inventory_has_reached_limit?(@cart_2)).to eq(false)
+
+      @cart_3 = Cart.new({
+        @tire.id.to_s => 3
+        })
+    expect(@tire.inventory_has_reached_limit?(@cart_3)).to eq(true)
+
   end
 end
