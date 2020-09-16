@@ -63,7 +63,7 @@ RSpec.describe "User" do
         expect(current_path).to eq("/register")
 
         expect(page).to have_content("Email has already been taken")
-
+save_and_open_page
         expect(find_field(:user_name).value).to eq(name)
         expect(find_field(:user_address).value).to eq(address)
         expect(find_field(:user_city).value).to eq(city)
