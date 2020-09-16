@@ -66,7 +66,6 @@ RSpec.describe "Items Index Page" do
       user = create(:user)
 
       order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210, user: user)
-      order_2 = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210, user: user)
 
       ItemOrder.create!(order_id: order.id, price: 1.0, item_id: tennis_ball.id, quantity: 5)
       ItemOrder.create!(order_id: order.id, price: 1.0, item_id: @pull_toy.id, quantity: 1)
