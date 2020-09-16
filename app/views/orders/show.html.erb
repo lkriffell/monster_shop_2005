@@ -2,6 +2,7 @@
 <h3>Created at: <%= @order.created_at %></h3>
 <h3>Updated at: <%= @order.updated_at %></h3>
 <h3>Current Status: <%= @order.status %></h3>
+<h3><%= button_to "Cancel Order", "profile/order/#{@order.id}", method: :destroy %></h3>
 <section class = "shipping-address">
   <h1 align = "center">Shipping Info</h1>
   <table>
