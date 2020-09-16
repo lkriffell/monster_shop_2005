@@ -8,7 +8,7 @@ class OrdersController <ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:id] || params[:order_id])
   end
 
   def create
