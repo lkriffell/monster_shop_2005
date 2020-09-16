@@ -11,7 +11,7 @@ RSpec.describe "Registered User Order" do
 
     @tire = @bike_shop.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
 
-    @order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: "80210", user_id: @regular_user.id, status: "Delivered")
+    @order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: "80210", user_id: @regular_user.id, status: "pending")
 
     ItemOrder.create!(order_id: @order.id, price: 1.0, item_id: @tire.id, quantity: 4)
 
