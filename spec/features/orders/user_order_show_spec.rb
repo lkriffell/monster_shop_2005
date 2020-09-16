@@ -11,13 +11,13 @@ RSpec.describe "Registered User Order" do
 
     @tire = @bike_shop.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
 
-    @order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: "80210", user_id: @regular_user.id)
+    @order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: "80210", user_id: @regular_user.id, status: "Delivered")
 
     ItemOrder.create!(order_id: @order.id, price: 1.0, item_id: @tire.id, quantity: 4)
 
     visit '/profile'
 
-    click_button "My Orders"
+    click_link "My Orders"
     expect(current_path).to eq('/profile/orders')
       within "#order-#{@order.id}" do
         click_link "Order: #{@order.id}"
@@ -27,19 +27,21 @@ RSpec.describe "Registered User Order" do
     expect(page).to have_content("Order No. #{@order.id}")
     expect(page).to have_content("Created at: #{@order.created_at}")
     expect(page).to have_content("Updated at: #{@order.updated_at}")
-    expect(page).to have_content("Current Status: #{@order.current_status}")
+    expect(page).to have_content("Current Status: #{@order.status}")
+    @order.item_orders.each do |item_order|
 
-      within ".items" do
-        expect(page).to have_content("Name: #{@tire.name}")
-        expect(page).to have_content("Description: #{@tire.description}")
-        expect(page).to have_content("#{@tire.url}")
-        expect(page).to have_content("Quantity: #{@tire.quantity}")
-        expect(page).to have_content("Price: #{@tire.price}")
-        expect(page).to have_content("Subtotal: #{@tire.subtotal}")
+      within "#item-#{item_order.item_id}" do
+        expect(page).to have_content("#{@tire.name}")
+        expect(page).to have_content("#{@tire.description}")
+
+        expect(page).to have_selector("img[src*='#{@tire.image}']")
+        expect(page).to have_content("#{item_order.quantity}")
+        expect(page).to have_content("#{item_order.price}")
+        expect(page).to have_content("#{item_order.subtotal}")
       end
-
-    expect(page).to have_content("Total Quantity: #{@order.total_quantity}")
-    expect(page).to have_content("Grand Total: #{@order.grand_total}")
+    end
+    expect(page).to have_content("Number of Items: #{@order.total_quantity}")
+    expect(page).to have_content("Total: $#{@order.grandtotal}0")
 
   end
 end
