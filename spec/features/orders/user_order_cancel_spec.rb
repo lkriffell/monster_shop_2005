@@ -5,8 +5,8 @@
 
 require "rails_helper"
 
-RSpec.describe "Registered User Order" do
-  it "When I visit my profile orders page, I see all information about the order" do
+RSpec.describe "Registered User Cancel Order" do
+  it "When I visit my profile orders page, I see a button to cancel my orders" do
 
     @regular_user = User.create!(name: "barb", password: '12345', address: "street", city: "Denver", state: "CO", zip:"90210", email: "someone@gmail.com", role: 0)
 
@@ -28,51 +28,24 @@ RSpec.describe "Registered User Order" do
         click_link "Order: #{@order.id}"
       end
 
+      # I see a button or link to cancel the order
     expect(page).to have_button("Cancel Order")
-# I see a button or link to cancel the order
-# When I click the cancel button for an order, the following happens:
-#
-# Each row in the "order items" table is given a status of "unfulfilled"
-# The order itself is given a status of "cancelled"
-# Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
-# I am returned to my profile page
-# I see a flash message telling me the order is now cancelled
-# And I see that this order now has an updated status of "cancelled"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     expect(current_path).to eq("/profile/orders/#{@order.id}")
+    # When I click the cancel button for an order, the following happens:
+    #
+    # Each row in the "order items" table is given a status of "unfulfilled"
+    # The order itself is given a status of "cancelled"
+    # Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
+    # I am returned to my profile page
+    # I see a flash message telling me the order is now cancelled
+    # And I see that this order now has an updated status of "cancelled"
+      @order.item_orders.each do |item_order|
 
-    expect(page).to have_content("Order No. #{@order.id}")
-    expect(page).to have_content("Created at: #{@order.created_at}")
-    expect(page).to have_content("Updated at: #{@order.updated_at}")
-    expect(page).to have_content("Current Status: #{@order.status}")
-    @order.item_orders.each do |item_order|
-
-      within "#item-#{item_order.item_id}" do
-        expect(page).to have_content("#{@tire.name}")
-        expect(page).to have_content("#{@tire.description}")
-
-        expect(page).to have_selector("img[src*='#{@tire.image}']")
-        expect(page).to have_content("#{item_order.quantity}")
-        expect(page).to have_content("#{item_order.price}")
-        expect(page).to have_content("#{item_order.subtotal}")
+        within "#item-#{item_order.item_id}" do
+          expect(item_order.status).to eq("unfulfilled")
+        end
       end
-    end
-    expect(page).to have_content("Number of Items: #{@order.total_quantity}")
-    expect(page).to have_content("Total: $#{@order.grandtotal}0")
 
+    expect(@order.status).to eq("cancelled")
   end
 end
