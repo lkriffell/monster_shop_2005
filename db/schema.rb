@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_131400) do
     t.integer "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "1"
   end
 
   create_table "orders", force: :cascade do |t|

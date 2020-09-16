@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: "dashboard#index"
     get '/users', to: "dashboard#show_users"
+    get '/merchants', to: "dashboard#show_merchants"
+    get 'merchant/:id/disable', to: "dashboard#disable_merchant"
+    get 'merchant/:id/enable', to: "dashboard#enable_merchant"
     get "/merchants/:id", to: "merchants#show"
   end
 

@@ -1,4 +1,4 @@
-class Merchant <ApplicationRecord
+class Merchant < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :item_orders, through: :items
   has_many :orders, through: :item_orders
@@ -10,6 +10,8 @@ class Merchant <ApplicationRecord
                         :state,
                         :zip
 
+
+  enum role: %w(disabled enabled)
 
   def no_orders?
     item_orders.empty?
