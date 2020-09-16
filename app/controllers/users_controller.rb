@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    current_user.attributes = user_params_2
+    current_user.attributes = password_params
     if current_user.save
       flash[:succes] = "Your information has been updated."
     else
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
     end
 
-    def user_params_2
-      params.permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
+    def password_params
+      params.permit(:password, :password_confirmation)
     end
 end
