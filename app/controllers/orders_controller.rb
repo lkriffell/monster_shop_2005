@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
   def show
     @merchant = Merchant.find(current_user.merchant_id)
-    @order = Order.find(params[:id])
+    @@order = Order.find(params[:id] || params[:order_id])
   end
 
   def create
@@ -29,6 +29,20 @@ class OrdersController < ApplicationController
     else
       flash[:notice] = "Please complete address form to create an order."
       render :new
+    end
+  end
+
+  def update
+    order = Order.find(params[:order_id])
+    if order.status != "shipped"
+      order.update(status: 3)
+      order.item_orders.map do |item_order|
+        item_order.add_back_to_inventory
+      end
+      flash[:notice] = "Order-#{order.id} is now #{order.status}"
+      redirect_to "/profile"
+    else
+      flash[:error] = "You cannot cancel a shipped order."
     end
   end
 

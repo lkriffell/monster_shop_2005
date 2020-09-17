@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def new
-    @user_params = user_params
+    @user = User.new
   end
 
   def create
@@ -11,7 +11,9 @@ class UsersController < ApplicationController
       redirect_to '/profile'
     else
       flash[:notice] = @user.errors.full_messages.uniq.to_sentence
-      @user_params = user_params
+      if flash[:notice].include?("Email has already been taken")
+        @user.update(email: nil)
+      end
       render :new
     end
   end
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def edit_password
@@ -40,8 +43,22 @@ class UsersController < ApplicationController
     redirect_to '/profile'
   end
 
+  def update_password
+    current_user.attributes = password_params
+    if current_user.save
+      flash[:succes] = "Your information has been updated."
+    else
+      flash[:error] = current_user.errors.full_messages.uniq.to_sentence
+    end
+    redirect_to '/profile'
+  end
+
   private
     def user_params
-      params.permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
+    end
+
+    def password_params
+      params.permit(:password, :password_confirmation)
     end
 end

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/profile/edit', to: 'users#edit'
   get '/profile/edit/password', to: 'users#edit_password'
   patch '/profile', to: 'users#update'
+  patch '/profile/password', to: 'users#update_password'
+
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -30,6 +32,9 @@ Rails.application.routes.draw do
     get '/items', to: "items#index"
     get '/orders/:id', to: "orders#show"
     get "/item_orders/:id/fulfill", to: "item_orders#update"
+    get '/items/:merchant_id', to: "items#index"
+    patch '/items/:item_id', to: "items#update"
+    delete '/items/:item_id', to: "items#destroy"
   end
 
   get "/merchants", to: "merchants#index"
@@ -65,6 +70,8 @@ Rails.application.routes.draw do
   delete "/cart/:item_id", to: "cart#remove_item"
 
   get "/profile/orders", to: "orders#index"
+  patch '/profile/orders/:order_id/edit', to: 'orders#update'
+  get '/profile/orders/:order_id', to: 'orders#show'
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"

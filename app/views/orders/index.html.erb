@@ -10,10 +10,10 @@
     <th>Grandtotal</th>
   </tr>
   <% @orders.each do |order| %>
-    <tr id= "order-<%=order.id%>">
+  <tr id= "order-<%=order.id%>">
       <td>
         <p align = "center">
-          <%= order.id %>
+          <%=link_to "Order: #{order.id}", "/profile/orders/#{order.id}" %>
         </p>
       </td>
       <td>
