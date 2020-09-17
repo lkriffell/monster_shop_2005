@@ -3,10 +3,8 @@ class Merchant::ItemOrdersController < ApplicationController
     @item_order = ItemOrder.find(params[:id])
     @order = Order.find(@item_order.order_id)
     @item = Item.find(@item_order.item_id)
-    @item.inventory -= @item_order.quantity
-    @item.save!
-    @item_order.status = 1
-    @item_order.save!
+    @item.update(inventory: (@item.inventory -= @item_order.quantity))
+    @item_order.update(status: 1)
     flash[:success] = "Order has been fulfilled."
     redirect_to "/merchant/orders/#{@order.id}"
   end
