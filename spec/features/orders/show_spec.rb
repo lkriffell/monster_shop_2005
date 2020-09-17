@@ -6,7 +6,7 @@ RSpec.describe("Show Order Page") do
       shop = create(:merchant)
       shop2 = create(:merchant)
       merchant = create(:merchant_user, merchant_id: shop.id)
-      @item1 = create(:item, merchant_id: shop.id)
+      @item1 = create(:item, merchant_id: shop.id, inventory: 20)
       @item2 = create(:item, merchant_id: shop2.id)
       user = create(:user)
       @order = create(:order, user_id: user.id)
@@ -31,13 +31,19 @@ RSpec.describe("Show Order Page") do
       expect(page).to_not have_content(@item2.name)
     end
 
-    it 'and can fulfill an item in an order' do
-      @item_order = create(:item_order, order_id: @order.id, item_id: @item1.id, price: @item1.price)
+    it 'and can fulfill an item in an order and item inventory decreases' do
+      @item_order = create(:item_order, order_id: @order.id, item_id: @item1.id, price: @item1.price, quantity: 1)
 
       visit "/orders/#{@order.id}"
 
+      expect(@item1.inventory).to eq(20)
+
       expect(page).to have_link("Fulfill Order")
       click_on "Fulfill Order"
+
+      @item1.reload
+
+      expect(@item1.inventory).to eq(19)
 
       expect(current_path).to eq("/orders/#{@order.id}")
       expect(page).to have_content("Order has been fulfilled.")
