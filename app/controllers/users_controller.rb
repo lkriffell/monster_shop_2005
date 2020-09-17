@@ -11,11 +11,9 @@ class UsersController < ApplicationController
       redirect_to '/profile'
     else
       flash[:notice] = @user.errors.full_messages.uniq.to_sentence
-      if flash[:notice] == "Email has already been taken"
-        params[:user][:email] = nil
+      if flash[:notice].include?("Email has already been taken")
+        @user.update(email: nil)
       end
-      @user_params = user_params
-      require "pry"; binding.pry
       render :new
     end
   end

@@ -25,10 +25,10 @@
 
 
     <%= f.label :Password %>
-    <%= f.text_field :password %><br>
+    <%= f.text_field :password, value: nil %><br>
 
     <%= f.label :password_confirmation %>
-    <%= f.text_field :password_confirmation %><br>
+    <%= f.text_field :password_confirmation, value: nil %><br>
 
     <%= f.submit "#{button_text}" %>
     <%= link_to "Edit Password", "/profile/edit/password" %>

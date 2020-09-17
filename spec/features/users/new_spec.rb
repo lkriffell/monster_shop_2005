@@ -63,14 +63,14 @@ RSpec.describe "User" do
         expect(current_path).to eq("/register")
 
         expect(page).to have_content("Email has already been taken")
-save_and_open_page
+
         expect(find_field(:user_name).value).to eq(name)
         expect(find_field(:user_address).value).to eq(address)
         expect(find_field(:user_city).value).to eq(city)
         expect(find_field(:user_state).value).to eq(state)
         expect(find_field(:user_zip).value).to eq(zip)
         expect(find_field(:user_email).value).to eq(nil)
-        expect(find_field(:password).value).to eq(nil)
+        expect(find_field(:user_password).value).to eq(nil)
       end
 
       it "when field is missing" do
