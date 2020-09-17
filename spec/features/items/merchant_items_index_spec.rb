@@ -137,8 +137,11 @@ RSpec.describe "Merchant Items Index Page" do
       end
 
       within("#item-#{unordered_item.id}") do
-        expect(page).to have_link("Delete")
+        click_link("Delete")
       end
+
+      expect(current_path).to eq("/merchant/items/#{@shop.id}")
+      expect(page).not_to have_css("#item-#{unordered_item.id}")
     end
   end
 end

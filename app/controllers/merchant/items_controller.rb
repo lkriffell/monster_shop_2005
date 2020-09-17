@@ -18,6 +18,13 @@ class Merchant::ItemsController < Merchant::BaseController
     redirect_to "/merchant/items/#{current_user.merchant_id}"
   end
 
+  def destroy
+    item = Item.find(item_params[:item_id])
+    Review.where(item_id: item.id).destroy_all
+    item.destroy
+    redirect_to "/merchant/items/#{current_user.merchant_id}"
+  end
+
   private
   def item_params
     params.permit(:item_id)
