@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/profile/edit/password', to: 'users#edit_password'
   patch '/profile', to: 'users#update'
 
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
 
@@ -64,6 +65,8 @@ Rails.application.routes.draw do
   delete "/cart/:item_id", to: "cart#remove_item"
 
   get "/profile/orders", to: "orders#index"
+  patch '/profile/orders/:order_id/edit', to: 'orders#update'
+  get '/profile/orders/:order_id', to: 'orders#show'
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"

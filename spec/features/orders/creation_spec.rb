@@ -1,11 +1,3 @@
-# When I fill out all information on the new order page
-# And click on 'Create Order'
-# An order is created and saved in the database
-# And I am redirected to that order's show page with the following information:
-#
-# - Details of the order:
-
-# - the date when the order was created
 require 'rails_helper'
 
 RSpec.describe("Order Creation") do
