@@ -31,6 +31,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    order = Order.find(params[:order_id])
+    order.status = 3
+    order.item_orders.map do |item_order|
+      item_order.status = 2
+    end
+    redirect_to "/profile"
+  end
+
 
   private
 
