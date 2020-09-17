@@ -7,11 +7,10 @@ class Item < ApplicationRecord
   validates_presence_of :name,
                         :description,
                         :price,
-                        :image,
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
   validates_numericality_of :price, greater_than: 0
-
+  validates_numericality_of :inventory, greater_than: 0
 
   def average_review
     reviews.average(:rating)
@@ -38,4 +37,12 @@ class Item < ApplicationRecord
     .limit(number)
   end
 
+  def loaded_image?
+    begin
+      open(self.image)
+    rescue
+      self.errors.add(:image)
+      false
+    end
+  end
 end
