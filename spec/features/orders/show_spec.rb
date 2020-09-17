@@ -17,7 +17,7 @@ RSpec.describe("Show Order Page") do
     it 'as well as price and quantity' do
       @item_order = create(:item_order, order_id: @order.id, item_id: @item1.id, price: @item1.price)
 
-      visit "/orders/#{@order.id}"
+      visit "/merchant/orders/#{@order.id}"
 
       expect(page).to have_content(@order.name)
       expect(page).to have_content(@order.address)
@@ -34,7 +34,7 @@ RSpec.describe("Show Order Page") do
     it 'and can fulfill an item in an order and item inventory decreases' do
       @item_order = create(:item_order, order_id: @order.id, item_id: @item1.id, price: @item1.price, quantity: 1)
 
-      visit "/orders/#{@order.id}"
+      visit "/merchant/orders/#{@order.id}"
 
       expect(@item1.inventory).to eq(20)
 
@@ -45,7 +45,7 @@ RSpec.describe("Show Order Page") do
 
       expect(@item1.inventory).to eq(19)
 
-      expect(current_path).to eq("/orders/#{@order.id}")
+      expect(current_path).to eq("/merchant/orders/#{@order.id}")
       expect(page).to have_content("Order has been fulfilled.")
       expect(page).to_not have_link("Fulfill Order")
 
@@ -53,7 +53,7 @@ RSpec.describe("Show Order Page") do
     it 'and cannot fulfill an item in an order if more items are ordered than in inventory' do
       @item_order = create(:item_order, order_id: @order.id, item_id: @item1.id, price: @item1.price, quantity: 500)
 
-      visit "/orders/#{@order.id}"
+      visit "/merchant/orders/#{@order.id}"
 
       expect(page).to_not have_link("Fulfill Order")
       expect(page).to have_content("This order cannot be fulfilled due to lack of inventory.")
