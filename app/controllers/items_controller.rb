@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
     @merchant = Merchant.find(params[:merchant_id])
     item = @merchant.items.new(item_params)
     if (item.loaded_image? || item.image == "") && item.save
+      # item.image = "https://robohash.org/Y9J.png?set=set4" if item.image == ""
       flash[:success] = "Your new item was saved."
       redirect_to "/merchants/#{@merchant.id}/items"
     else
