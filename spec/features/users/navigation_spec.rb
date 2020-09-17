@@ -107,7 +107,9 @@ RSpec.describe "navigation" do
         expect(current_path).to eq('/')
 
         click_link 'All Merchants'
+
         expect(current_path).to eq("/admin/merchants")
+
         click_link 'Home'
 
         click_link 'All Items'
