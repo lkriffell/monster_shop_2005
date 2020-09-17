@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
       flash[:notice] = "Order-#{order.id} is now #{order.status}"
       redirect_to "/profile"
     else
-
+      flash[:error] = "You cannot cancel a shipped order."
     end
   end
 
