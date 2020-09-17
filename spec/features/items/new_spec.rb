@@ -32,6 +32,7 @@ RSpec.describe "Create Merchant Items" do
       fill_in :inventory, with: inventory
 
       click_button "Create Item"
+      expect(page).to have_content("Your new item was saved.")
 
       new_item = Item.last
 
@@ -47,7 +48,7 @@ RSpec.describe "Create Merchant Items" do
       expect(page).to have_content("Price: $#{new_item.price}")
       expect(page).to have_css("img[src*='#{new_item.image}']")
       expect(page).to have_content("Active")
-      expect(page).to_not have_content(new_item.description)
+      expect(page).to have_content(new_item.description)
       expect(page).to have_content("Inventory: #{new_item.inventory}")
     end
 
@@ -55,10 +56,10 @@ RSpec.describe "Create Merchant Items" do
       visit "/merchants/#{@brian.id}/items"
 
       name = ""
-      price = 18
-      description = "No more chaffin'!"
-      image_url = "https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg"
-      inventory = ""
+      price = -1
+      description = ""
+      image_url = ""
+      inventory = -1
 
       click_on "Add New Item"
 
@@ -70,7 +71,8 @@ RSpec.describe "Create Merchant Items" do
 
       click_button "Create Item"
 
-      expect(page).to have_content("Name can't be blank and Inventory can't be blank")
+      expect(page).to have_content("Name can't be blank, Description can't be blank, Price must be greater than 0, and Inventory must be greater than 0")
+      expect(page).not_to have_content("Image can't be blank")
       expect(page).to have_button("Create Item")
     end
   end

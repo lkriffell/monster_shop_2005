@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "merchant dashboard" do
   describe "shows the merchant a user works for" do
-    it "and it's details" do
+    it "and its details" do
       bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       merchant = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1, merchant_id: bike_shop.id)
 
@@ -44,6 +44,19 @@ RSpec.describe "merchant dashboard" do
 
       click_link order2.id
       expect(current_path).to eq("/orders/#{order2.id}")
+    end
+    it "and a link to their items" do
+      bike_shop = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+
+      merchant = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 1, merchant_id: bike_shop.id)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+
+      visit 'merchant/dashboard'
+
+      click_link "My Items"
+
+      expect(current_path).to eq("/merchant/items")
     end
   end
 end

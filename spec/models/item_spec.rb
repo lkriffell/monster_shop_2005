@@ -5,7 +5,6 @@ describe Item, type: :model do
     it { should validate_presence_of :name }
     it { should validate_presence_of :description }
     it { should validate_presence_of :price }
-    it { should validate_presence_of :image }
     it { should validate_presence_of :inventory }
     it { should validate_inclusion_of(:active?).in_array([true,false]) }
   end
@@ -29,7 +28,9 @@ describe Item, type: :model do
       @chew_toy = brian.items.create(name: "Chew Toy", description: "Chews for days!", price: 21, image: "https://i5.walmartimages.com/asr/42ff43c6-1ba8-4061-bd67-656eee493086_1.5caa8bd92323ed8bc3e6d28b0a0cb0b9.png", active?:true, inventory: 21)
 
       flying_disc = brian.items.create(name: "A Flying Disc", description: "Flies for days!", price: 10, image: "https://hw.menardc.com/main/items/media/CEGEN001/ProductLarge/253-0107_P_4.jpg", inventory: 32)
+
       user = create(:user)
+
       order = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210, user: user)
       order_2 = Order.create!(name: "name", address: "address", city: "city", state: "state", zip: 80210, user: user)
 
@@ -40,6 +41,7 @@ describe Item, type: :model do
       ItemOrder.create!(order_id: order.id, price: 1.0, item_id: @chew_toy.id, quantity: 2)
       ItemOrder.create!(order_id: order_2.id, price: 1.0, item_id: @tennis_ball.id, quantity: 3)
       ItemOrder.create!(order_id: order_2.id, price: 1.0, item_id: pull_toy.id, quantity: 4)
+
     end
 
     it 'sorts most popular' do
@@ -87,6 +89,19 @@ describe Item, type: :model do
       order = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: user)
       order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
       expect(@chain.no_orders?).to eq(false)
+    end
+
+    it "loaded_image?" do
+      item = create(:item, merchant_id: @bike_shop.id)
+      # result = item.loaded_image?
+
+      # expect(result).to be_truthy
+
+      item.image = "Incorrect Image Input"
+      result = item.loaded_image?
+
+      expect(result).to eq(false)
+      expect(item.errors.full_messages.to_sentence).to eq("Image is invalid")
     end
   end
 

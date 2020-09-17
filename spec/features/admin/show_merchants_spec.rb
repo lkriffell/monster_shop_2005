@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "admin" do
-  describe "can see all merchants through" do
-    it "the all merchants page and disable" do
+  describe "can see all merchants through the all merchants page" do
+    it "and can disable a merchant as well as their items" do
       admin = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 2)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
@@ -32,7 +32,7 @@ RSpec.describe "admin" do
       expect(item_statuses).to eq([false])
     end
 
-    it "the all merchants page and enable" do
+    it "and can enable a merchant as well as their items" do
       admin = User.create!(name: "bob", password: '12345', password_confirmation: '12345', address: "street", city: "Denver", state: "CO", zip:"12345", email: "someone@gmail.com", role: 2)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
