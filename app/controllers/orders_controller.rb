@@ -8,7 +8,8 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id] || params[:order_id])
+    @merchant = Merchant.find(current_user.merchant_id)
+    @@order = Order.find(params[:id] || params[:order_id])
   end
 
   def create

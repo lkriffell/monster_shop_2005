@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#destroy'
 
+
+
   namespace :admin do
     get '/dashboard', to: "dashboard#index"
     get '/users', to: "dashboard#show_users"
@@ -28,6 +30,8 @@ Rails.application.routes.draw do
   namespace :merchant do
     get '/dashboard', to: "dashboard#index"
     get '/items', to: "items#index"
+    get '/orders/:id', to: "orders#show"
+    get "/item_orders/:id/fulfill", to: "item_orders#update"
     get '/items/:merchant_id', to: "items#index"
     patch '/items/:item_id', to: "items#update"
     delete '/items/:item_id', to: "items#destroy"
