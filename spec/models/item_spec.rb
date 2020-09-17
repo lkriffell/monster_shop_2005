@@ -5,7 +5,6 @@ describe Item, type: :model do
     it { should validate_presence_of :name }
     it { should validate_presence_of :description }
     it { should validate_presence_of :price }
-    it { should validate_presence_of :image }
     it { should validate_presence_of :inventory }
     it { should validate_inclusion_of(:active?).in_array([true,false]) }
   end
@@ -43,7 +42,6 @@ describe Item, type: :model do
       ItemOrder.create!(order_id: order_2.id, price: 1.0, item_id: @tennis_ball.id, quantity: 3)
       ItemOrder.create!(order_id: order_2.id, price: 1.0, item_id: pull_toy.id, quantity: 4)
 
-      unordered_item = create(:item)
     end
 
     it 'sorts most popular' do
