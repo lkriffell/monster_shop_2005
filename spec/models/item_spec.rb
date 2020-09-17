@@ -90,6 +90,19 @@ describe Item, type: :model do
       order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
       expect(@chain.no_orders?).to eq(false)
     end
+
+    it "loaded_image?" do
+      item = create(:item, merchant_id: @bike_shop.id)
+      # result = item.loaded_image?
+
+      # expect(result).to be_truthy
+
+      item.image = "Incorrect Image Input"
+      result = item.loaded_image?
+
+      expect(result).to eq(false)
+      expect(item.errors.full_messages.to_sentence).to eq("Image is invalid")
+    end
   end
 
   it '#inventory_has_reached_limit?(cart, item)' do

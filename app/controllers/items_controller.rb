@@ -1,5 +1,6 @@
-class ItemsController < ApplicationController
+require 'open-uri'
 
+class ItemsController < ApplicationController
   def index
     if params[:merchant_id]
       @merchant = Merchant.find(params[:merchant_id])
@@ -21,8 +22,8 @@ class ItemsController < ApplicationController
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
-    item = @merchant.items.create(item_params)
-    if item.save
+    item = @merchant.items.new(item_params)
+    if (item.loaded_image? || item.image == "") && item.save
       flash[:success] = "Your new item was saved."
       redirect_to "/merchants/#{@merchant.id}/items"
     else

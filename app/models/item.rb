@@ -12,7 +12,6 @@ class Item < ApplicationRecord
   validates_numericality_of :price, greater_than: 0
   validates_numericality_of :inventory, greater_than: 0
 
-
   def average_review
     reviews.average(:rating)
   end
@@ -38,4 +37,12 @@ class Item < ApplicationRecord
     .limit(number)
   end
 
+  def loaded_image?
+    begin
+      open(self.image)
+    rescue
+      self.errors.add(:image)
+      false
+    end
+  end
 end
