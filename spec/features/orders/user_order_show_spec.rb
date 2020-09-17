@@ -29,11 +29,9 @@ RSpec.describe "Registered User Order" do
     expect(page).to have_content("Updated at: #{@order.updated_at}")
     expect(page).to have_content("Current Status: #{@order.status}")
     @order.item_orders.each do |item_order|
-
       within "#item-#{item_order.item_id}" do
         expect(page).to have_content("#{@tire.name}")
         expect(page).to have_content("#{@tire.description}")
-
         expect(page).to have_selector("img[src*='#{@tire.image}']")
         expect(page).to have_content("#{item_order.quantity}")
         expect(page).to have_content("#{item_order.price}")
