@@ -10,4 +10,9 @@ class ItemOrder <ApplicationRecord
     price * quantity
   end
 
+  def add_back_to_inventory
+    item.update!(inventory: (item.inventory += quantity))
+    self.update(status: 2)
+  end
+
 end

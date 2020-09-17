@@ -33,11 +33,16 @@ class OrdersController < ApplicationController
 
   def update
     order = Order.find(params[:order_id])
-    order.status = 3
-    order.item_orders.map do |item_order|
-      item_order.status = 2
+    if order.status != "shipped"
+      order.update(status: 3)
+      order.item_orders.map do |item_order|
+        item_order.add_back_to_inventory
+      end
+      flash[:notice] = "Order-#{order.id} is now #{order.status}"
+      redirect_to "/profile"
+    else
+
     end
-    redirect_to "/profile"
   end
 
 
