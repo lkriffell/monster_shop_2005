@@ -30,7 +30,8 @@ RSpec.describe "Registered User Cancel Order" do
 
       # I see a button or link to cancel the order
     expect(page).to have_button("Cancel Order")
-    expect(current_path).to eq("/profile/orders/#{@order.id}")
+    click_on "Cancel Order"
+    expect(current_path).to eq("/profile")
     # When I click the cancel button for an order, the following happens:
     #
     # Each row in the "order items" table is given a status of "unfulfilled"
@@ -39,12 +40,9 @@ RSpec.describe "Registered User Cancel Order" do
     # I am returned to my profile page
     # I see a flash message telling me the order is now cancelled
     # And I see that this order now has an updated status of "cancelled"
-      @order.item_orders.each do |item_order|
-
-        within "#item-#{item_order.item_id}" do
-          expect(item_order.status).to eq("unfulfilled")
-        end
-      end
+    @order.item_orders.each do |item_order|
+      expect(item_order.status).to eq("unfulfilled")
+    end
 
     expect(@order.status).to eq("cancelled")
   end
