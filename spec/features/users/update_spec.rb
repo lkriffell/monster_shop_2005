@@ -12,12 +12,12 @@ describe 'User profile edit page' do
     expect(current_path).to eq('/profile/edit')
 
     within('form') do
-      expect(find_field(:name).value).to eq(user.name)
-      expect(find_field(:address).value).to eq(user.address)
-      expect(find_field(:city).value).to eq(user.city)
-      expect(find_field(:state).value).to eq(user.state)
-      expect(find_field(:zip).value).to eq(user.zip)
-      expect(find_field(:email).value).to eq(user.email)
+      expect(find_field(:user_name).value).to eq(user.name)
+      expect(find_field(:user_address).value).to eq(user.address)
+      expect(find_field(:user_city).value).to eq(user.city)
+      expect(find_field(:user_state).value).to eq(user.state)
+      expect(find_field(:user_zip).value).to eq(user.zip)
+      expect(find_field(:user_email).value).to eq(user.email)
     end
 
     new_name = "Joe Dude"
@@ -27,13 +27,14 @@ describe 'User profile edit page' do
     new_zip = "99009"
     new_email = "someone@gmail.com"
 
-    fill_in :name, with: new_name
-    fill_in :address, with: new_address
-    fill_in :city, with: new_city
-    fill_in :state, with: new_state
-    fill_in :zip, with: new_zip
-    fill_in :email, with: new_email
-    fill_in :password, with: user.password
+    fill_in :user_name, with: new_name
+    fill_in :user_address, with: new_address
+    fill_in :user_city, with: new_city
+    fill_in :user_state, with: new_state
+    fill_in :user_zip, with: new_zip
+    fill_in :user_email, with: new_email
+    fill_in :user_password, with: user.password
+    fill_in :user_password_confirmation, with: user.password
 
     click_on "Update Profile"
     expect(current_path).to eq('/profile')
@@ -59,8 +60,8 @@ describe 'User profile edit page' do
 
     new_email = "someone.else@gmail.com"
 
-    fill_in :email, with: new_email
-    fill_in :password, with: user.password
+    fill_in :user_email, with: new_email
+    fill_in :user_password, with: user.password
 
     click_on "Update Profile"
     expect(current_path).to eq('/profile')
