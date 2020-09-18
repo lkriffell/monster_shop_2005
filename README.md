@@ -42,9 +42,9 @@ Our app is deployed to Heroku [here.](https://polar-wildwood-61165.herokuapp.com
 
 ## Refactoring
 
-Our group refactored numerous parts of the project while we worked. A particularly successful simplification reconstructed the Navigation Bar from over 30 lines to 4 using [partials](https://backend.turing.io/module2/lessons/partials) and `ApplicationController` methods.
+Our group refactored numerous parts of the project while we worked. A particularly successful simplification reconstructed the Navigation Bar from over 30 lines to 4 lines using [partials](https://backend.turing.io/module2/lessons/partials) and `ApplicationController` methods.
 
-![4ffs0t](https://user-images.githubusercontent.com/47278429/93613481-c4721980-f985-11ea-940d-860313509ffa.gif)
+![Refactor](https://user-images.githubusercontent.com/47278429/93616365-81b24080-f989-11ea-910a-1ab0eb5c4593.gif)
 
 ## Testing
 
