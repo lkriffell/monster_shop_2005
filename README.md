@@ -26,11 +26,11 @@ Students worked remotely over a 9-day period using Slack, Zoom, Github, and [Git
 - Heroku
 - ActiveRecord
 - Gems
-    - `capybara` for app interaction
-    - `shoulda-matchers` to simplify testing syntax
-    - `bcrypt` for [authentication](https://backend.turing.io/module2/lessons/authentication)
-    - `orderly` as an Rspec matcher
-    - `factory_bot` for fixtures replacement
+    - [`capybara`](https://github.com/teamcapybara/capybara) for app interaction
+    - [`shoulda-matchers`](https://github.com/thoughtbot/shoulda-matchers) to simplify testing syntax
+    - [`bcrypt`](https://github.com/codahale/bcrypt-ruby) for [authentication](https://backend.turing.io/module2/lessons/authentication)
+    - [`factory_bot`](https://github.com/thoughtbot/factory_bot) for fixtures replacement
+    - [`orderly`](https://rubygems.org/gems/orderly/versions/0.0.3) as an Rspec matcher
 
 ## Schema
 
