@@ -9,12 +9,13 @@
 - [Schema](#schema)
 - [Refactoring](#refactoring)
 - [Contributors](#contributors)
+- [Extra Fun](#extra-fun)
 
 ## Introduction
 
 __Monster Shop__ was the group project assigned to the 2006 Back End cohort during Module 2 at [Turing School of Software and Design](https://turing.io/). Students were tasked with creating a fictitious e-commerce platform that allowed for _regular users_, _merchants/merchant employees_, and an _admin_ account that served as a "super user."
 
-A [starter repo](https://github.com/turingschool-examples/monster_shop_2005) was provided which included some premade files. Students completed user stories to build a web application utilizing a model-view-controller design pattern and CRUD functionality, where _regular users_ would be able to register and create a profile, add items to a shopping cart, and check out. _Merchant employees_ had capabilitites such as marking items as fulfilled, which would eventually be shipped by an admin.
+A [starter repo](https://github.com/turingschool-examples/monster_shop_2005) was provided which included some premade files. Students completed user stories to build a web application utilizing a [model-view-controller](https://backend.turing.io/module2/lessons/intro_to_mvc) design pattern and [CRUD functionality](https://backend.turing.io/module2/lessons/restful_routes_and_crud), where _regular users_ would be able to register and create a profile, add items to a shopping cart, and check out. _Merchant employees_ had capabilitites such as marking items as fulfilled, which would eventually be shipped by an _admin_.
 
 Students worked remotely over a 9-day period using Slack, Zoom, Github, and Github projects to attempt 54 assigned user stories. Test-driven development drove the creation of ReSTful routes with tests written in RSpec.
 
@@ -48,3 +49,9 @@ Kiera Allen - [Github](https://github.com/KieraAllen)
 Angela Guardia - [Github](https://github.com/AngelaGuardia)
 
 Logan Riffell - [Github](https://github.com/lkriffell)
+
+### Extra Fun
+
+![NYAN](nyan_example.gif)
+
+We used an [RSpec formatter](https://github.com/mattsears/nyan-cat-formatter) to display a colorful [Nyan Cat](https://en.wikipedia.org/wiki/Nyan_Cat) when running tests.
