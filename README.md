@@ -13,11 +13,11 @@
 
 ## Introduction
 
-__Monster Shop__ was the group project assigned to the 2006 Back End cohort during Module 2 at [Turing School of Software and Design](https://turing.io/). Students were tasked with creating a fictitious e-commerce platform that allowed for _regular users_, _merchants/merchant employees_, and an _admin_ account that served as a "super user."
+__Monster Shop__ was the group project assigned to the 2006 Back End cohort during Module 2 at [Turing School of Software and Design](https://turing.io/). Students were tasked with creating a [fictitious e-commerce platform](https://polar-wildwood-61165.herokuapp.com/) that allowed for _regular users_, _merchants/merchant employees_, and an _admin_ account that served as a "super user."
 
-A [starter repo](https://github.com/turingschool-examples/monster_shop_2005) was provided which included some premade files. Students completed user stories to build a web application utilizing a [model-view-controller](https://backend.turing.io/module2/lessons/intro_to_mvc) design pattern and [CRUD functionality](https://backend.turing.io/module2/lessons/restful_routes_and_crud), where _regular users_ would be able to register and create a profile, add items to a shopping cart, and check out. _Merchant employees_ had capabilitites such as marking items as fulfilled, which would eventually be shipped by an _admin_.
+A [starter repo](https://github.com/turingschool-examples/monster_shop_2005) was provided which included some premade files. Students worked together in paired and individual sessions to build a web application utilizing a [model-view-controller](https://backend.turing.io/module2/lessons/intro_to_mvc) design pattern and [CRUD functionality](https://backend.turing.io/module2/lessons/restful_routes_and_crud), where _regular users_ would be able to register and create a profile, add items to a shopping cart, and check out. _Merchant employees_ had capabilitites such as marking items as fulfilled, and those items would eventually be shipped by an _admin_.
 
-Students worked remotely over a 9-day period using Slack, Zoom, Github, and Github projects to attempt 54 assigned user stories. Test-driven development drove the creation of ReSTful routes with tests written in RSpec.
+Students worked remotely over a 9-day period using Slack, Zoom, Github, and [Github projects](https://github.com/Arique1104/monster_shop_2005/projects/1) to attempt 54 user stories. Test-driven development drove the creation of ReSTful routes with tests written in RSpec.
 
 ## Features
 - Ruby 2.5.3
@@ -28,7 +28,7 @@ Students worked remotely over a 9-day period using Slack, Zoom, Github, and Gith
 - Gems
     - `capybara` for app interaction
     - `shoulda-matchers` to simplify testing syntax
-    - `bcrypt` for authentication
+    - `bcrypt` for [authentication](https://backend.turing.io/module2/lessons/authentication)
     - `orderly` as an Rspec matcher
     - `factory_bot` for fixtures replacement
 
@@ -38,7 +38,11 @@ Students worked remotely over a 9-day period using Slack, Zoom, Github, and Gith
 
 ## Refactoring
 
-- screenshots of refactored methods will go here
+Our group refactored numerous parts of the project while we worked. A particularly successful simplification reconstructed the Navigation Bar from over 30 lines to 4 using [partials](https://backend.turing.io/module2/lessons/partials) and `ApplicationController` methods.
+
+- Before:
+
+- After:
 
 ## Contributors
 
