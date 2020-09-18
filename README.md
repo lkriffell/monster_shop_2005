@@ -48,7 +48,7 @@ Our group refactored numerous parts of the project while we worked. A particular
 
 ## Testing
 
-![Coverage](https://user-images.githubusercontent.com/47278429/93612440-58db7c80-f984-11ea-9d2b-f502a016c328.png)
+![Coverage](https://user-images.githubusercontent.com/47278429/93613959-5f6af380-f986-11ea-92ee-ef8812e4a49d.png)
 
 We used SimpleCov to track the test coverage and keep us on track with TDD.
 
