@@ -52,6 +52,6 @@ Logan Riffell - [Github](https://github.com/lkriffell)
 
 ### Extra Fun
 
-![NYAN](nyan_example.gif)
+![NYAN](https://raw.githubusercontent.com/mattsears/nyan-cat-formatter/master/nyan_example.gif)
 
 We used an [RSpec formatter](https://github.com/mattsears/nyan-cat-formatter) to display a colorful [Nyan Cat](https://en.wikipedia.org/wiki/Nyan_Cat) when running tests.
