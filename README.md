@@ -20,7 +20,7 @@ A [starter repo](https://github.com/turingschool-examples/monster_shop_2005) was
 
 Students worked remotely over a 9-day period using Slack, Zoom, Github, and [Github projects](https://github.com/Arique1104/monster_shop_2005/projects/1) to attempt 54 user stories. Test-driven development drove the creation of ReSTful routes with tests written in RSpec.
 
-Our app is deployed to Heroku [here.](https://polar-wildwood-61165.herokuapp.com/)
+Our app is deployed to Heroku [here.](https://monster-shop-group-project.herokuapp.com/)
 
 ## Features
 - Ruby 2.5.3
