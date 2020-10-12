@@ -1,6 +1,6 @@
 # Monster Shop
 
-[<img width="1435" alt="monster-shop-header" src="https://user-images.githubusercontent.com/46658858/93547063-73c8d500-f921-11ea-8eec-605926c6c137.png">](https://polar-wildwood-61165.herokuapp.com/)
+[<img width="1435" alt="monster-shop-header" src="https://user-images.githubusercontent.com/46658858/93547063-73c8d500-f921-11ea-8eec-605926c6c137.png">](https://monster-shop-group-project.herokuapp.com/)
 
 ## Table of Contents
 
